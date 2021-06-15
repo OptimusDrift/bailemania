@@ -1,7 +1,7 @@
 var tiempoRestante;
 class Scene2 extends Phaser.Scene {
   constructor() {
-    super("juego");
+    super("juegonivel1");
   }
 
   preload() {}
