@@ -14,7 +14,8 @@ function CrearFlecha(physics, x, y, velocidad) {
   flecha.setGravity(false);
   flecha.setImmovable(true);
   flecha.setVelocityY(velocidad);
-  return flecha;
+  flecha.scene.flechasGrupo.add(flecha);
+  //return flecha;
 }
 function AgregasrFlecha(
   flechaMPC,
@@ -24,7 +25,6 @@ function AgregasrFlecha(
   y,
   velocidad = 300
 ) {
-  console.log(flechaMPC.getChildren().length);
   if (flechaMPC.getChildren().length >= 1) {
     flecha = flechaMPC.getChildren()[0];
     MostrarFlecha(flecha, x, y, velocidad);
@@ -32,14 +32,12 @@ function AgregasrFlecha(
     //flechaMPC.killAndHide(flecha);
     flechaMPC.remove(flecha);
   } else if (flechasGrupo.getChildren().length < 3) {
-    flecha = CrearFlecha(physics, x, y, velocidad);
-    flecha.scene.flechasGrupo.add(flecha);
+    CrearFlecha(physics, x, y, velocidad);
   }
 }
 
 function EliminarFlecha(flechasGrupo) {
   if (flechasGrupo.getChildren().length > 0) {
-    console.log(flechasGrupo.getChildren().length);
     flecha = flechasGrupo.getChildren()[0];
     flecha.scene.flechaMPC.add(flecha);
     //flechasGrupo.killAndHide(A);
