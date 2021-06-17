@@ -2,29 +2,29 @@ class Scene1 extends Phaser.Scene {
   constructor() {
     super("inicio");
   }
-  preload() 
-  {
+  preload() {
+    //menus
     this.load.image("Portada", "./assets/MenuInicio.png");
     this.load.image("UnJugador", "./assets/Unjugador.png");
     this.load.image("DosJugadores", "./assets/DosJugadores.png");
     this.load.image("StrikerGames", "./assets/StrikerGames.png");
+
+    //assets levels
+    this.load.image("flecha", "./assets/Flecha_1.png");
   }
-  create() 
-  {
-    var Portada = this.add.image(400, 300, "Portada")
+  create() {
+    this.add.image(400, 300, "Portada");
 
     var UnJugador = this.add.image(400, 330, "UnJugador");
-    UnJugador.setInteractive()
-    UnJugador.on("pointerdown", () => this.scene.start("Juegonivel1") );
+    UnJugador.setInteractive();
+    UnJugador.on("pointerdown", () => this.scene.start("juegonivel1"));
 
     var DosJugadores = this.add.image(400, 400, "DosJugadores");
-    DosJugadores.setInteractive()
-    DosJugadores.on("pointerdown", () => this.scene.start("Juegonivel2") );
+    DosJugadores.setInteractive();
+    DosJugadores.on("pointerdown", () => this.scene.start("Juegonivel2"));
 
     var StrikerGames = this.add.image(95, 580, "StrikerGames");
-    StrikerGames.setInteractive()
-    StrikerGames.on("pointerdown", () => this.scene.start("Creditos") );
-
+    StrikerGames.setInteractive();
+    StrikerGames.on("pointerdown", () => this.scene.start("Creditos"));
   }
-  
 }
