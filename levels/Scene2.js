@@ -1,5 +1,6 @@
 var tiempoRestante;
-var keyX;
+var collidersPerfecto;
+var collidersCasiPerfecto;
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("juegonivel1");
@@ -16,11 +17,20 @@ class Scene2 extends Phaser.Scene {
     //Flechas que estan activas en el mapa
     this.flechaMPC = this.add.group();
 
+    collidersPerfecto = this.physics.add.staticGroup();
+    collidersPerfecto.create(100, 425, "perfecto");
+    //collidersPerfecto.setVisible(false);
+
+    collidersCasiPerfecto = this.physics.add.staticGroup();
+    collidersCasiPerfecto.create(200, 225, "casiPerfecto");
+    collidersCasiPerfecto.create(200, 225, "casiPerfecto");
+    //collidersCasiPerfecto.setVisible(false);
+
     //Pruebas borrar
     SpawnFlechas(this.flechaMPC, this.physics);
     SpawnFlechas(this.flechaMPC, this.physics);
     t = 0;
-    keyX = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
+    this.keyX = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
   }
   update(time, delta) {
     //Reloj del juego
@@ -32,9 +42,9 @@ class Scene2 extends Phaser.Scene {
     }
     //console.log(Phaser.Input.Keyboard);
     //a;
-    if (Phaser.Input.Keyboard.JustDown(keyX)) {
-      EliminarFlecha(this.flechasGrupo, "arriba");
-    }
+    //if (Phaser.Input.Keyboard.JustDown(this.keyX)) {
+    //EliminarFlecha(this.flechasGrupo, "arriba");
+    //}
   }
 }
 //variabnles a borrar

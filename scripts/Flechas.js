@@ -8,6 +8,13 @@ function MostrarFlecha(flecha, velocidad, datosFlecha) {
 //Crea una nueva flecha
 function CrearFlecha(physics, velocidad, datosFlecha) {
   flecha = physics.add.sprite(-100, -100, "flecha");
+  physics.add.overlap(
+    collidersCasiPerfecto,
+    flecha,
+    EliminarFlecha,
+    null,
+    this
+  );
   ReiniciarFlecha(flecha, velocidad, datosFlecha);
   flecha.body.setAllowGravity(false);
   flecha.setGravity(false);
@@ -30,15 +37,16 @@ function SpawnFlechas(flechaMPC, physics, velocidad = 300) {
 }
 
 //Elimina la primera flecha de la cola
-function EliminarFlecha(flechasGrupo) {
-  if (flechasGrupo.getChildren().length > 0) {
-    flecha = flechasGrupo.getChildren()[0];
-    //flecha.setTint(0xffffff);
-    //flecha.setRotation(0);
+function EliminarFlecha(colision) {
+  if (Phaser.Input.Keyboard.JustDown(colision.scene.keyX)) {
+    console.log(colision.scene.flechasGrupo.getChildren()[0]);
+    flecha = colision.scene.flechasGrupo.getChildren()[0];
+    flecha.x = -100;
+    flecha.y = -100;
     flecha.scene.flechaMPC.add(flecha);
-    flechasGrupo.killAndHide(flecha);
     flecha.setVelocityY(0);
-    flechasGrupo.remove(flecha);
+    colision.scene.flechasGrupo.killAndHide(flecha);
+    colision.scene.flechasGrupo.remove(flecha);
   }
 }
 
