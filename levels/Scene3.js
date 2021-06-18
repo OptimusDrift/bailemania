@@ -1,10 +1,49 @@
+var tiempoRestante;
+var keyX;
+var Score;
+var Puntos;
 class Scene3 extends Phaser.Scene {
   constructor() {
-    super("juegonivel2");
+    super("Juegonivel2");
   }
 
   preload() {}
-  create() {}
+  create() {
+    //Inicialización del Reloj
+    gameGlobalOptions.tiempoTotal = 0;
 
-  update() {}
+    //Arreglos de flechas a agregar en el mapa
+    this.flechasGrupo = this.add.group();
+
+    //Flechas que estan activas en el mapa
+    this.flechaMPC = this.add.group();
+
+    //Pruebas borrar
+    SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
+    SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
+    t = 0;
+    keyX = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
+
+    //Sistema de Puntos
+    Score = this.add.text(55, 545, "Puntos: 0", {fontFamily:"Impact, fantasy"});
+    Puntos = 0;
+  }
+  update(time, delta) {
+    //Reloj del juego
+    gameGlobalOptions.tiempoTotal += Reloj(delta);
+    //Pruebas
+    if (DesactivarReloj(gameGlobalOptions.tiempoTotal, t)) {
+      SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
+      t = ActivarReloj(gameGlobalOptions.tiempoTotal, NumeroRandom(1, 0.2));
+    }
+    //console.log(Phaser.Input.Keyboard);
+    //a;
+    if (Phaser.Input.Keyboard.JustDown(keyX)) {
+      EliminarFlecha(this.flechasGrupo, "arriba");
+      Puntos += 50;
+      Score.setText("Puntos: " + Puntos);
+    }
+  }
 }
+//variables a borrar
+var t;
