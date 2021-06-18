@@ -17,8 +17,8 @@ class Scene2 extends Phaser.Scene {
     this.flechaMPC = this.add.group();
 
     //Pruebas borrar
-    SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
-    SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
+    SpawnFlechas(this.flechaMPC, this.physics);
+    SpawnFlechas(this.flechaMPC, this.physics);
     t = 0;
     keyX = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
   }
@@ -27,7 +27,7 @@ class Scene2 extends Phaser.Scene {
     gameGlobalOptions.tiempoTotal += Reloj(delta);
     //Pruebas
     if (DesactivarReloj(gameGlobalOptions.tiempoTotal, t)) {
-      SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
+      SpawnFlechas(this.flechaMPC, this.physics);
       t = ActivarReloj(gameGlobalOptions.tiempoTotal, NumeroRandom(1, 0.2));
     }
     //console.log(Phaser.Input.Keyboard);

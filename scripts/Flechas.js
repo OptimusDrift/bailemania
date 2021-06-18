@@ -1,7 +1,7 @@
 //Muestra una flecha ya creada
-function MostrarFlecha(flecha, velocidad, tipoDeFlecha) {
+function MostrarFlecha(flecha, velocidad, datosFlecha) {
+  ReiniciarFlecha(flecha, velocidad, datosFlecha);
   flecha.active = true;
-  ReiniciarFlecha(flecha, velocidad, tipoDeFlecha);
   flecha.visible = true;
 }
 
@@ -14,9 +14,10 @@ function CrearFlecha(physics, velocidad, datosFlecha) {
   flecha.setImmovable(true);
   flecha.scene.flechasGrupo.add(flecha);
 }
+
 //Crea una flecha o muestra una del arreglo de flechas.
 //Crear arreglo de flacha MPC
-function SpawnFlechas(flechaMPC, flechasGrupo, physics, velocidad = 300) {
+function SpawnFlechas(flechaMPC, physics, velocidad = 300) {
   datosFlecha = FlechaAleatoria();
   if (flechaMPC.getChildren().length >= 1) {
     flecha = flechaMPC.getChildren()[0];
@@ -58,8 +59,10 @@ function ObtenerPocicion(tipoDeFlecha) {
 }
 
 function ReiniciarFlecha(flecha, velocidad, tipoDeFlecha) {
+  flecha.clearTint();
   flecha.setVelocityY(velocidad);
   flecha.x = ObtenerPocicion(tipoDeFlecha[0]);
+  flecha.setTexture(datosFlecha[3][0]);
   if (datosFlecha[3][0] == "flecha") {
     flecha.setTint(datosFlecha[1]);
     flecha.setRotation(datosFlecha[2]);
@@ -69,9 +72,7 @@ function ReiniciarFlecha(flecha, velocidad, tipoDeFlecha) {
     } else {
       flecha.setRotation(0);
     }
-    flecha.setTexture(datosFlecha[3][0]);
   }
-
   flecha.y = 0;
 }
 
