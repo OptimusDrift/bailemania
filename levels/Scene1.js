@@ -21,7 +21,6 @@ class Scene1 extends Phaser.Scene {
     this.load.image("flechaFuego", "./assets/flechaFuego.png");
     //Colliders
     this.load.image("perfecto", "./assets/perfecto.png");
-    this.load.image("casiPerfecto", "./assets/casiPerfecto.png");
   }
   create() {
     this.add.image(400, 300, "Portada");

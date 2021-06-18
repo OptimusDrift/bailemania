@@ -22,8 +22,8 @@ class Scene2 extends Phaser.Scene {
     //collidersPerfecto.setVisible(false);
 
     collidersCasiPerfecto = this.physics.add.staticGroup();
-    collidersCasiPerfecto.create(226, 520, "casiPerfecto");
-    collidersCasiPerfecto.create(226, 420, "casiPerfecto");
+    collidersCasiPerfecto.create(226, 520, "perfecto");
+    collidersCasiPerfecto.create(226, 420, "perfecto");
     //collidersCasiPerfecto.setVisible(false);
 
     //Pruebas borrar
