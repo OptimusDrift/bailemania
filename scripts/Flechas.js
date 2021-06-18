@@ -23,7 +23,7 @@ function SpawnFlechas(flechaMPC, flechasGrupo, physics, velocidad = 300) {
     MostrarFlecha(flecha, velocidad, tipoDeFlecha);
     flecha.scene.flechasGrupo.add(flecha);
     flechaMPC.remove(flecha);
-  } else if (flechasGrupo.getChildren().length < 3) {
+  } else {
     CrearFlecha(physics, velocidad, tipoDeFlecha);
   }
 }
@@ -62,8 +62,14 @@ function ReiniciarFlecha(flecha, velocidad, tipoDeFlecha) {
   flecha.y = 0;
 }
 
+//El nombre lo dice todo OwO
+function NumeroRandom(max, min) {
+  return Math.random() * (max - min) + min;
+}
+
+//Devuelve el tipo de flecha a mostrar
 function FlechaAleatoria() {
-  sorteo = Math.random() * (5 - 1) + 1;
+  sorteo = NumeroRandom(5, 1);
   if (parseInt(sorteo) == 1) {
     return "izquierda";
   }

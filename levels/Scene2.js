@@ -35,7 +35,7 @@ class Scene2 extends Phaser.Scene {
     //Pruebas
     if (DesactivarReloj(gameGlobalOptions.tiempoTotal, t)) {
       SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
-      t = ActivarReloj(gameGlobalOptions.tiempoTotal, 1);
+      t = ActivarReloj(gameGlobalOptions.tiempoTotal, NumeroRandom(1, 0.2));
     }
     //console.log(Phaser.Input.Keyboard);
     //a;
