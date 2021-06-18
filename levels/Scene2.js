@@ -1,6 +1,7 @@
 var tiempoRestante;
 var collidersPerfecto;
 var collidersCasiPerfecto;
+var collidersPerdido;
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("juegonivel1");
@@ -25,6 +26,9 @@ class Scene2 extends Phaser.Scene {
     collidersCasiPerfecto.create(226, 520, "perfecto");
     collidersCasiPerfecto.create(226, 420, "perfecto");
     //collidersCasiPerfecto.setVisible(false);
+
+    collidersPerdido = this.physics.add.staticGroup();
+    collidersPerdido.create(226, 590, "perfecto");
 
     //Pruebas borrar
     SpawnFlechas(this.flechaMPC, this.physics);

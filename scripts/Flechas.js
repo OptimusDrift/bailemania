@@ -8,13 +8,9 @@ function MostrarFlecha(flecha, velocidad, datosFlecha) {
 //Crea una nueva flecha
 function CrearFlecha(physics, velocidad, datosFlecha) {
   flecha = physics.add.sprite(-100, -100, "flecha");
-  physics.add.overlap(
-    collidersCasiPerfecto,
-    flecha,
-    EliminarFlecha,
-    null,
-    this
-  );
+  physics.add.overlap(collidersCasiPerfecto, flecha, CasiPerfecto, null, this);
+  physics.add.overlap(collidersPerfecto, flecha, Perfecto, null, this);
+  physics.add.overlap(collidersPerdido, flecha, Perdido, null, this);
   ReiniciarFlecha(flecha, velocidad, datosFlecha);
   flecha.body.setAllowGravity(false);
   flecha.setGravity(false);
@@ -35,19 +31,28 @@ function SpawnFlechas(flechaMPC, physics, velocidad = 300) {
     CrearFlecha(physics, velocidad, datosFlecha);
   }
 }
+function CasiPerfecto(params) {
+  if (
+    Phaser.Input.Keyboard.JustDown(params.scene.keyX) &&
+    params.scene.flechasGrupo.getChildren()[0] == params
+  ) {
+    EliminarFlecha(params);
+  }
+}
+function Perfecto(params) {}
+function Perdido(params) {
+  EliminarFlecha(params);
+}
 
 //Elimina la primera flecha de la cola
 function EliminarFlecha(colision) {
-  if (Phaser.Input.Keyboard.JustDown(colision.scene.keyX)) {
-    console.log(colision.scene.flechasGrupo.getChildren()[0]);
-    flecha = colision.scene.flechasGrupo.getChildren()[0];
-    flecha.x = -100;
-    flecha.y = -100;
-    flecha.scene.flechaMPC.add(flecha);
-    flecha.setVelocityY(0);
-    colision.scene.flechasGrupo.killAndHide(flecha);
-    colision.scene.flechasGrupo.remove(flecha);
-  }
+  flecha = colision.scene.flechasGrupo.getChildren()[0];
+  flecha.x = -100;
+  flecha.y = -100;
+  flecha.scene.flechaMPC.add(flecha);
+  flecha.setVelocityY(0);
+  colision.scene.flechasGrupo.killAndHide(flecha);
+  colision.scene.flechasGrupo.remove(flecha);
 }
 
 //Obtener pocicion
