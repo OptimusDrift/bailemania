@@ -10,16 +10,15 @@ class Scene2 extends Phaser.Scene {
     //Inicialización del Reloj
     gameGlobalOptions.tiempoTotal = 0;
 
-    //Arreglo de flechas a agregar en el mapa
+    //Arreglos de flechas a agregar en el mapa
     this.flechasGrupo = this.add.group();
-    //this.flechasGrupo.maxSize = 3;
 
     //Flechas que estan activas en el mapa
     this.flechaMPC = this.add.group();
 
     //Pruebas borrar
-    AgregasrFlecha(this.flechaMPC, this.flechasGrupo, this.physics, 100, 100);
-    AgregasrFlecha(this.flechaMPC, this.flechasGrupo, this.physics, 150, 150);
+    SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
+    SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
     txt = this.add.text(300, 300, "0", {
       fontFamily: "Zapf Chancery, cursive",
       fontSize: "32px",
@@ -33,16 +32,15 @@ class Scene2 extends Phaser.Scene {
   update(time, delta) {
     //Reloj del juego
     gameGlobalOptions.tiempoTotal += Reloj(delta);
-
     //Pruebas
     if (DesactivarReloj(gameGlobalOptions.tiempoTotal, t)) {
-      AgregasrFlecha(this.flechaMPC, this.flechasGrupo, this.physics, 150, 150);
+      SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
       t = ActivarReloj(gameGlobalOptions.tiempoTotal, 1);
     }
     //console.log(Phaser.Input.Keyboard);
     //a;
     if (Phaser.Input.Keyboard.JustDown(keyX)) {
-      EliminarFlecha(this.flechasGrupo);
+      EliminarFlecha(this.flechasGrupo, "arriba");
     }
   }
 }

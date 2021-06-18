@@ -10,7 +10,14 @@ class Scene1 extends Phaser.Scene {
     this.load.image("StrikerGames", "./assets/StrikerGames.png");
 
     //assets levels
-    this.load.image("flecha", "./assets/Flecha_1.png");
+    //Contorno de las flechas
+    this.load.image("FlechaJugador1", "./assets/FlechaJugador1.png");
+    this.load.image("FlechaJugador2", "./assets/FlechaJugador2.png");
+    //Flechas que reaparecen
+    this.load.spritesheet("FlechasQueCaen", "./assets/FlechasQueCaen.png", {
+      frameWidth: 56,
+      frameHeight: 56,
+    });
   }
   create() {
     this.add.image(400, 300, "Portada");
@@ -26,5 +33,23 @@ class Scene1 extends Phaser.Scene {
     var StrikerGames = this.add.image(95, 580, "StrikerGames");
     StrikerGames.setInteractive();
     StrikerGames.on("pointerdown", () => this.scene.start("Creditos"));
+
+    //Creación de Animaciones
+    this.anims.create({
+      key: "izquierda",
+      frames: [{ key: "FlechasQueCaen", frame: 0 }],
+    });
+    this.anims.create({
+      key: "abajo",
+      frames: [{ key: "FlechasQueCaen", frame: 1 }],
+    });
+    this.anims.create({
+      key: "arriba",
+      frames: [{ key: "FlechasQueCaen", frame: 2 }],
+    });
+    this.anims.create({
+      key: "derecha",
+      frames: [{ key: "FlechasQueCaen", frame: 3 }],
+    });
   }
 }
