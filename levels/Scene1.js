@@ -13,11 +13,12 @@ class Scene1 extends Phaser.Scene {
     //Contorno de las flechas
     this.load.image("FlechaJugador1", "./assets/FlechaJugador1.png");
     this.load.image("FlechaJugador2", "./assets/FlechaJugador2.png");
-    //Flechas que reaparecen
-    this.load.spritesheet("FlechasQueCaen", "./assets/FlechasQueCaen.png", {
-      frameWidth: 56,
-      frameHeight: 56,
-    });
+    //Flechas
+    this.load.image("flecha", "./assets/flecha.png");
+    //PowerUps
+    this.load.image("bomba", "./assets/bomba.png");
+    this.load.image("flechaHielo", "./assets/flechaHielo.png");
+    this.load.image("flechaFuego", "./assets/flechaFuego.png");
   }
   create() {
     this.add.image(400, 300, "Portada");
@@ -33,23 +34,5 @@ class Scene1 extends Phaser.Scene {
     var StrikerGames = this.add.image(95, 580, "StrikerGames");
     StrikerGames.setInteractive();
     StrikerGames.on("pointerdown", () => this.scene.start("Creditos"));
-
-    //Creación de Animaciones
-    this.anims.create({
-      key: "izquierda",
-      frames: [{ key: "FlechasQueCaen", frame: 0 }],
-    });
-    this.anims.create({
-      key: "abajo",
-      frames: [{ key: "FlechasQueCaen", frame: 1 }],
-    });
-    this.anims.create({
-      key: "arriba",
-      frames: [{ key: "FlechasQueCaen", frame: 2 }],
-    });
-    this.anims.create({
-      key: "derecha",
-      frames: [{ key: "FlechasQueCaen", frame: 3 }],
-    });
   }
 }

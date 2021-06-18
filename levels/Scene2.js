@@ -19,13 +19,6 @@ class Scene2 extends Phaser.Scene {
     //Pruebas borrar
     SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
     SpawnFlechas(this.flechaMPC, this.flechasGrupo, this.physics);
-    txt = this.add.text(300, 300, "0", {
-      fontFamily: "Zapf Chancery, cursive",
-      fontSize: "32px",
-      color: "#FFFFFF",
-      fill: "#000",
-    });
-    txt.setVisible(true);
     t = 0;
     keyX = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
   }
@@ -46,4 +39,3 @@ class Scene2 extends Phaser.Scene {
 }
 //variabnles a borrar
 var t;
-var txt;
