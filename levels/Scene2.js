@@ -18,12 +18,12 @@ class Scene2 extends Phaser.Scene {
     this.flechaMPC = this.add.group();
 
     collidersPerfecto = this.physics.add.staticGroup();
-    collidersPerfecto.create(100, 425, "perfecto");
+    collidersPerfecto.create(226, 470, "perfecto");
     //collidersPerfecto.setVisible(false);
 
     collidersCasiPerfecto = this.physics.add.staticGroup();
-    collidersCasiPerfecto.create(200, 225, "casiPerfecto");
-    collidersCasiPerfecto.create(200, 225, "casiPerfecto");
+    collidersCasiPerfecto.create(226, 520, "casiPerfecto");
+    collidersCasiPerfecto.create(226, 420, "casiPerfecto");
     //collidersCasiPerfecto.setVisible(false);
 
     //Pruebas borrar
