@@ -56,7 +56,10 @@ class Scene2 extends Phaser.Scene {
 
     //Pruebas borrar
     t = 0;
-    this.keyX = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
+    this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+    this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
   }
   update(time, delta) {
     //Reloj del juego
@@ -65,7 +68,7 @@ class Scene2 extends Phaser.Scene {
     if (DesactivarReloj(gameGlobalOptions.tiempoTotal, t)) {
       SpawnFlechas(this.flechaMPCJ1, this.physics, 1);
       SpawnFlechas(this.flechaMPCJ0, this.physics, 0);
-      t = ActivarReloj(gameGlobalOptions.tiempoTotal, NumeroRandom(1, 0.2));
+      t = ActivarReloj(gameGlobalOptions.tiempoTotal, NumeroRandom(0.5, 0.2));
     }
   }
 }

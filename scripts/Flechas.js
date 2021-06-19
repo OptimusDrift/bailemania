@@ -32,8 +32,8 @@ function CrearColisiones(flecha, physics, jugador) {
 //Crea una nueva flecha
 function CrearFlecha(physics, velocidad, datosFlecha, jugador) {
   flecha = physics.add.sprite(-100, -100, "flecha");
-  CrearColisiones(flecha, physics, jugador);
   ReiniciarFlecha(flecha, velocidad, datosFlecha, jugador);
+  CrearColisiones(flecha, physics, jugador);
   flecha.body.setAllowGravity(false);
   flecha.setGravity(false);
   flecha.setImmovable(true);
@@ -46,7 +46,7 @@ function CrearFlecha(physics, velocidad, datosFlecha, jugador) {
 
 //Crea una flecha o muestra una del arreglo de flechas.
 //Crear arreglo de flacha MPC
-function SpawnFlechas(flechaMPC, physics, jugador = 0, velocidad = 300) {
+function SpawnFlechas(flechaMPC, physics, jugador = 0, velocidad = 200) {
   datosFlecha = FlechaAleatoria();
   if (flechaMPC.getChildren().length >= 1) {
     flecha = flechaMPC.getChildren()[0];
@@ -63,43 +63,72 @@ function SpawnFlechas(flechaMPC, physics, jugador = 0, velocidad = 300) {
 }
 
 //Colisiones
+function PrecionarTecla(flecha) {
+  if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyA)) {
+    return "izquierda";
+  }
+  if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyD)) {
+    return "derecha";
+  }
+  if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyS)) {
+    return "abajo";
+  }
+  if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyW)) {
+    return "arriba";
+  }
+  return "";
+}
+
+function TeclaPrecionadaIgualAFlecha(flecha, tecla) {
+  return flecha.name == tecla;
+}
 //Jugador 0
-function CasiPerfectoJ0(params) {
-  if (
-    Phaser.Input.Keyboard.JustDown(params.scene.keyX) &&
-    params.scene.flechasGrupoJ0.getChildren()[0] == params
-  ) {
-    EliminarFlecha(params, 0);
+function CasiPerfectoJ0(flecha) {
+  if (PrecionarTecla(flecha) != "") {
+    if (flecha.scene.flechasGrupoJ0.getChildren()[0]) {
+      EliminarFlecha(flecha, 0);
+    }
+    if (TeclaPrecionadaIgualAFlecha(flecha, PrecionarTecla(flecha))) {
+      //Sumar puntos y aumentar la cantidad de flechas del total
+      console.log("40");
+    }
   }
 }
-function PerfectoJ0(params) {}
+function PerfectoJ0(flecha) {
+  //if (PrecionarTecla(flecha)) {
+  //if (flecha.scene.flechasGrupoJ0.getChildren()[0]) {
+  //Sumar puntos
+  //}
+  //EliminarFlecha(flecha, 0);
+  //}
+}
 function PerdidoJ0(params) {
-  EliminarFlecha(params, 0);
+  //EliminarFlecha(params, 0);
 }
 //Jugador 1
 function CasiPerfectoJ1(params) {
   if (
-    Phaser.Input.Keyboard.JustDown(params.scene.keyX) &&
+    Phaser.Input.Keyboard.JustDown(params.scene.keyA) &&
     params.scene.flechasGrupoJ1.getChildren()[0] == params
   ) {
-    EliminarFlecha(params, 1);
+    //EliminarFlecha(params, 1);
   }
 }
 function PerfectoJ1(params) {}
 function PerdidoJ1(params) {
-  EliminarFlecha(params, 1);
+  //EliminarFlecha(params, 1);
 }
 
 //Elimina la primera flecha de la cola
-function EliminarFlecha(colision, jugador) {
+function EliminarFlecha(flecha, jugador) {
   if (Jugador0(jugador)) {
-    flecha = colision.scene.flechasGrupoJ0.getChildren()[0];
+    flecha = flecha.scene.flechasGrupoJ0.getChildren()[0];
     flecha.scene.flechaMPCJ0.add(flecha);
-    colision.scene.flechasGrupoJ0.remove(flecha);
+    flecha.scene.flechasGrupoJ0.remove(flecha);
   } else {
-    flecha = colision.scene.flechasGrupoJ1.getChildren()[0];
+    flecha = flecha.scene.flechasGrupoJ1.getChildren()[0];
     flecha.scene.flechaMPCJ1.add(flecha);
-    colision.scene.flechasGrupoJ1.remove(flecha);
+    flecha.scene.flechasGrupoJ1.remove(flecha);
   }
   flecha.x = -100;
   flecha.y = -100;
@@ -110,31 +139,31 @@ function Jugador0(jugador) {
   return jugador == 0;
 }
 //Obtener pocicion
-function ObtenerPocicion(tipoDeFlecha, jugador) {
+function ObtenerPocicion(fecha, jugador) {
   if (Jugador0(jugador)) {
-    if (tipoDeFlecha == "izquierda") {
+    if (fecha.name == "izquierda") {
       return 70;
     }
-    if (tipoDeFlecha == "abajo") {
+    if (fecha.name == "abajo") {
       return 155;
     }
-    if (tipoDeFlecha == "arriba") {
+    if (fecha.name == "arriba") {
       return 240;
     }
-    if (tipoDeFlecha == "derecha") {
+    if (fecha.name == "derecha") {
       return 325;
     }
   }
-  if (tipoDeFlecha == "izquierda") {
+  if (fecha.name == "izquierda") {
     return 470;
   }
-  if (tipoDeFlecha == "abajo") {
+  if (fecha.name == "abajo") {
     return 555;
   }
-  if (tipoDeFlecha == "arriba") {
+  if (fecha.name == "arriba") {
     return 640;
   }
-  if (tipoDeFlecha == "derecha") {
+  if (fecha.name == "derecha") {
     return 725;
   }
 }
@@ -142,7 +171,8 @@ function ObtenerPocicion(tipoDeFlecha, jugador) {
 function ReiniciarFlecha(flecha, velocidad, tipoDeFlecha, jugador) {
   flecha.clearTint();
   flecha.setVelocityY(velocidad);
-  flecha.x = ObtenerPocicion(tipoDeFlecha[0], jugador);
+  flecha.name = tipoDeFlecha[0];
+  flecha.x = ObtenerPocicion(flecha, jugador);
   flecha.setTexture(datosFlecha[3][0]);
   if (datosFlecha[3][0] == "flecha") {
     flecha.setTint(datosFlecha[1]);
@@ -170,12 +200,12 @@ function FlechaAleatoria() {
     return ["izquierda", colores[sorteo], 0, powerUp];
   }
   if (parseInt(sorteo) == 1) {
-    return ["abajo", colores[sorteo], 1.5, powerUp];
+    return ["arriba", colores[sorteo], 1.5, powerUp];
   }
   if (parseInt(sorteo) == 2) {
-    return ["arriba", colores[sorteo], 3, powerUp];
+    return ["derecha", colores[sorteo], 3, powerUp];
   }
-  return ["derecha", colores[sorteo], 4.5, powerUp];
+  return ["abajo", colores[sorteo], 4.5, powerUp];
 }
 
 function PowerUp() {
