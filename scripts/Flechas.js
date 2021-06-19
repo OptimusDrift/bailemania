@@ -1,80 +1,148 @@
 //Muestra una flecha ya creada
-function MostrarFlecha(flecha, velocidad, datosFlecha) {
-  ReiniciarFlecha(flecha, velocidad, datosFlecha);
+function MostrarFlecha(flecha, velocidad, datosFlecha, jugador) {
+  ReiniciarFlecha(flecha, velocidad, datosFlecha, jugador);
   flecha.active = true;
   flecha.visible = true;
 }
 
+function CrearColisiones(flecha, physics, jugador) {
+  if (Jugador0(jugador)) {
+    physics.add.overlap(
+      collidersCasiPerfectoJ0,
+      flecha,
+      CasiPerfectoJ0,
+      null,
+      this
+    );
+    physics.add.overlap(collidersPerfectoJ0, flecha, PerfectoJ0, null, this);
+    physics.add.overlap(collidersPerdidoJ0, flecha, PerdidoJ0, null, this);
+  } else {
+    physics.add.overlap(
+      collidersCasiPerfectoJ1,
+      flecha,
+      CasiPerfectoJ1,
+      null,
+      this
+    );
+    physics.add.overlap(collidersPerfectoJ1, flecha, PerfectoJ1, null, this);
+    physics.add.overlap(collidersPerdidoJ1, flecha, PerdidoJ1, null, this);
+  }
+}
+
 //Crea una nueva flecha
-function CrearFlecha(physics, velocidad, datosFlecha) {
+function CrearFlecha(physics, velocidad, datosFlecha, jugador) {
   flecha = physics.add.sprite(-100, -100, "flecha");
-  physics.add.overlap(collidersCasiPerfecto, flecha, CasiPerfecto, null, this);
-  physics.add.overlap(collidersPerfecto, flecha, Perfecto, null, this);
-  physics.add.overlap(collidersPerdido, flecha, Perdido, null, this);
-  ReiniciarFlecha(flecha, velocidad, datosFlecha);
+  CrearColisiones(flecha, physics, jugador);
+  ReiniciarFlecha(flecha, velocidad, datosFlecha, jugador);
   flecha.body.setAllowGravity(false);
   flecha.setGravity(false);
   flecha.setImmovable(true);
-  flecha.scene.flechasGrupo.add(flecha);
+  if (Jugador0(jugador)) {
+    flecha.scene.flechasGrupoJ0.add(flecha);
+  } else {
+    flecha.scene.flechasGrupoJ1.add(flecha);
+  }
 }
 
 //Crea una flecha o muestra una del arreglo de flechas.
 //Crear arreglo de flacha MPC
-function SpawnFlechas(flechaMPC, physics, velocidad = 300) {
+function SpawnFlechas(flechaMPC, physics, jugador = 0, velocidad = 300) {
   datosFlecha = FlechaAleatoria();
   if (flechaMPC.getChildren().length >= 1) {
     flecha = flechaMPC.getChildren()[0];
-    MostrarFlecha(flecha, velocidad, datosFlecha);
-    flecha.scene.flechasGrupo.add(flecha);
+    MostrarFlecha(flecha, velocidad, datosFlecha, jugador);
+    if (Jugador0(jugador)) {
+      flecha.scene.flechasGrupoJ0.add(flecha);
+    } else {
+      flecha.scene.flechasGrupoJ1.add(flecha);
+    }
     flechaMPC.remove(flecha);
   } else {
-    CrearFlecha(physics, velocidad, datosFlecha);
+    CrearFlecha(physics, velocidad, datosFlecha, jugador);
   }
 }
-function CasiPerfecto(params) {
+
+//Colisiones
+//Jugador 0
+function CasiPerfectoJ0(params) {
   if (
     Phaser.Input.Keyboard.JustDown(params.scene.keyX) &&
-    params.scene.flechasGrupo.getChildren()[0] == params
+    params.scene.flechasGrupoJ0.getChildren()[0] == params
   ) {
-    EliminarFlecha(params);
+    EliminarFlecha(params, 0);
   }
 }
-function Perfecto(params) {}
-function Perdido(params) {
-  EliminarFlecha(params);
+function PerfectoJ0(params) {}
+function PerdidoJ0(params) {
+  EliminarFlecha(params, 0);
+}
+//Jugador 1
+function CasiPerfectoJ1(params) {
+  if (
+    Phaser.Input.Keyboard.JustDown(params.scene.keyX) &&
+    params.scene.flechasGrupoJ1.getChildren()[0] == params
+  ) {
+    EliminarFlecha(params, 1);
+  }
+}
+function PerfectoJ1(params) {}
+function PerdidoJ1(params) {
+  EliminarFlecha(params, 1);
 }
 
 //Elimina la primera flecha de la cola
-function EliminarFlecha(colision) {
-  flecha = colision.scene.flechasGrupo.getChildren()[0];
+function EliminarFlecha(colision, jugador) {
+  if (Jugador0(jugador)) {
+    flecha = colision.scene.flechasGrupoJ0.getChildren()[0];
+    flecha.scene.flechaMPCJ0.add(flecha);
+    colision.scene.flechasGrupoJ0.remove(flecha);
+  } else {
+    flecha = colision.scene.flechasGrupoJ1.getChildren()[0];
+    flecha.scene.flechaMPCJ1.add(flecha);
+    colision.scene.flechasGrupoJ1.remove(flecha);
+  }
   flecha.x = -100;
   flecha.y = -100;
-  flecha.scene.flechaMPC.add(flecha);
   flecha.setVelocityY(0);
-  colision.scene.flechasGrupo.killAndHide(flecha);
-  colision.scene.flechasGrupo.remove(flecha);
 }
 
+function Jugador0(jugador) {
+  return jugador == 0;
+}
 //Obtener pocicion
-function ObtenerPocicion(tipoDeFlecha) {
+function ObtenerPocicion(tipoDeFlecha, jugador) {
+  if (Jugador0(jugador)) {
+    if (tipoDeFlecha == "izquierda") {
+      return 70;
+    }
+    if (tipoDeFlecha == "abajo") {
+      return 155;
+    }
+    if (tipoDeFlecha == "arriba") {
+      return 240;
+    }
+    if (tipoDeFlecha == "derecha") {
+      return 325;
+    }
+  }
   if (tipoDeFlecha == "izquierda") {
-    return 115;
+    return 470;
   }
   if (tipoDeFlecha == "abajo") {
-    return 200;
+    return 555;
   }
   if (tipoDeFlecha == "arriba") {
-    return 285;
+    return 640;
   }
   if (tipoDeFlecha == "derecha") {
-    return 370;
+    return 725;
   }
 }
 
-function ReiniciarFlecha(flecha, velocidad, tipoDeFlecha) {
+function ReiniciarFlecha(flecha, velocidad, tipoDeFlecha, jugador) {
   flecha.clearTint();
   flecha.setVelocityY(velocidad);
-  flecha.x = ObtenerPocicion(tipoDeFlecha[0]);
+  flecha.x = ObtenerPocicion(tipoDeFlecha[0], jugador);
   flecha.setTexture(datosFlecha[3][0]);
   if (datosFlecha[3][0] == "flecha") {
     flecha.setTint(datosFlecha[1]);
