@@ -12,6 +12,24 @@ class Scene3 extends Phaser.Scene {
 
   preload() {}
   create() {
+        //Contorno Flechas Jugador1
+        var FlechaIzq1 = this.add.image(70, 470, "FlechaJugador1");       
+        var FlechaAba1 = this.add.image(155, 470, "FlechaJugador1");
+        FlechaAba1.setRotation(4.5);
+        var FlechaArr1 = this.add.image(240, 470, "FlechaJugador1");
+        FlechaArr1.setRotation(1.5);
+        var FlechaDer1 = this.add.image(325, 470, "FlechaJugador1");
+        FlechaDer1.setRotation(3);
+
+        //Contorno Flechas Jugador2
+        var FlechaIzq2 = this.add.image(470, 470, "FlechaJugador2");       
+        var FlechaAba2 = this.add.image(555, 470, "FlechaJugador2");
+        FlechaAba2.setRotation(4.5);
+        var FlechaArr2 = this.add.image(640, 470, "FlechaJugador2");
+        FlechaArr2.setRotation(1.5);
+        var FlechaDer2 = this.add.image(725, 470, "FlechaJugador2");
+        FlechaDer2.setRotation(3);
+
         //Inicialización del Reloj
         gameGlobalOptions.tiempoTotal = 0;
 
