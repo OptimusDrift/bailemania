@@ -88,7 +88,14 @@ class Scene2 extends Phaser.Scene {
       SpawnFlechas(this.flechaMPCJ0, this.physics, 0);
       t = ActivarReloj(gameGlobalOptions.tiempoTotal, NumeroRandom(0.5, 0.2));
     }
+    if (DesactivarReloj(gameGlobalOptions.tiempoTotal, j)) {
+      ReanudarJuego(this.flechaMPCJ1);
+      j = ActivarReloj(gameGlobalOptions.tiempoTotal, 1);
+    } else {
+      PausarJuego(this.flechaMPCJ1);
+    }
   }
 }
 //variabnles a borrar
 var t;
+var j = 0;

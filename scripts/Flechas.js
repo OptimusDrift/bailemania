@@ -239,3 +239,20 @@ function PowerUp() {
   }
   return ["flecha", 0x000000, false];
 }
+
+function PausaJ0(params, velocidad) {
+  params.scene.flechasGrupoJ0.getChildren().forEach((element) => {
+    element.setVelocity(0, velocidad);
+  });
+}
+
+function PausaJ1(params, velocidad) {
+  params.scene.flechasGrupoJ1.getChildren().forEach((element) => {
+    element.setVelocity(0, velocidad);
+  });
+}
+
+function PausarOReanudarFlechas(params, velocidad = 0) {
+  PausaJ0(params, velocidad);
+  PausaJ1(params, velocidad);
+}

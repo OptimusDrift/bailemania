@@ -23,3 +23,15 @@ function AgregarFlechasJ1() {
 function AgregarFlechasJ1() {
   fechasJ1 = 0;
 }
+
+function PausarJuego(params) {
+  PausarOReanudarFlechas(params);
+  //PausarMusica();
+  //Mostrar Menu
+}
+
+function ReanudarJuego(params) {
+  PausarOReanudarFlechas(params, 200);
+  //ReanudarMusica();
+  //Ocultar Menu
+}
