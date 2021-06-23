@@ -1,3 +1,5 @@
+velocidad = 200;
+
 //Muestra una flecha ya creada
 function MostrarFlecha(flecha, velocidad, datosFlecha, jugador) {
   ReiniciarFlecha(flecha, velocidad, datosFlecha, jugador);
@@ -254,5 +256,24 @@ function PausaJ1(params, velocidad) {
 
 function PausarOReanudarFlechas(params, velocidad = 0) {
   PausaJ0(params, velocidad);
-  PausaJ1(params, velocidad);
+  //PausaJ1(params, velocidad);
+}
+
+function LimpiarFlechasEnPantalla(params, jugador) {
+  var i = 0;
+  if (jugador == 0) {
+    i = params.scene.flechasGrupoJ0.getChildren().length;
+  } else {
+    i = i = params.scene.flechasGrupoJ1.getChildren().length;
+  }
+  for (let index = 0; index < i; index++) {
+    EliminarFlecha(params, jugador);
+    AgregarPuntosPerfecto();
+  }
+}
+
+function GirarFlechas(params) {
+  params.scene.flechasGrupoJ0.getChildren().forEach((element) => {
+    element.rotation += 0.01;
+  });
 }
