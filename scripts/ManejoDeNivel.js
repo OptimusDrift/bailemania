@@ -1,12 +1,25 @@
-function AgregarPuntosCasiPerfecto () 
-{
-    Puntos += 50;    
+puntos = 0;
+fechasJ0 = 0;
+fechasJ1 = 0;
+function AgregarPuntosCasiPerfecto() {
+  puntos += 50;
 }
-function AgregarPuntosPerfecto () 
-{
-    Puntos += 100;    
+function AgregarPuntosPerfecto() {
+  puntos += 100;
 }
-function ReiniciarPuntos () 
-{
-    Puntos += 0;    
+function ReiniciarPuntos() {
+  puntos = 0;
+}
+
+function AgregarFlechasJ0() {
+  fechasJ0 += 1;
+}
+function ReiniciarFlechasJ0() {
+  fechasJ0 = 0;
+}
+function AgregarFlechasJ1() {
+  fechasJ1 += 1;
+}
+function AgregarFlechasJ1() {
+  fechasJ1 = 0;
 }

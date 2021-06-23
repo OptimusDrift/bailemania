@@ -38,6 +38,24 @@ class Scene2 extends Phaser.Scene {
     collidersCasiPerfectoJ0.create(200, 420, "perfecto");
     //collidersCasiPerfecto.setVisible(false);
 
+    //Contorno Flechas Jugador1
+    this.add.image(70, 470, "flechaJugador1");
+    var FlechaAba1 = this.add.image(155, 470, "flechaJugador1");
+    FlechaAba1.setRotation(4.5);
+    var FlechaArr1 = this.add.image(240, 470, "flechaJugador1");
+    FlechaArr1.setRotation(1.5);
+    var FlechaDer1 = this.add.image(325, 470, "flechaJugador1");
+    FlechaDer1.setRotation(3);
+
+    //Contorno Flechas Jugador2
+    this.add.image(470, 470, "flechaJugador2");
+    var FlechaAba2 = this.add.image(555, 470, "flechaJugador2");
+    FlechaAba2.setRotation(4.5);
+    var FlechaArr2 = this.add.image(640, 470, "flechaJugador2");
+    FlechaArr2.setRotation(1.5);
+    var FlechaDer2 = this.add.image(725, 470, "flechaJugador2");
+    FlechaDer2.setRotation(3);
+
     collidersPerdidoJ0 = this.physics.add.staticGroup();
     collidersPerdidoJ0.create(200, 590, "perfecto");
 

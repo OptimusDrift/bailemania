@@ -11,8 +11,8 @@ class Scene1 extends Phaser.Scene {
 
     //assets levels
     //Contorno de las flechas
-    this.load.image("FlechaJugador1", "./assets/FlechaJugador1.png");
-    this.load.image("FlechaJugador2", "./assets/FlechaJugador2.png");
+    this.load.image("flechaJugador1", "./assets/FlechaJugador1.png");
+    this.load.image("flechaJugador2", "./assets/FlechaJugador2.png");
     //Flechas
     this.load.image("flecha", "./assets/flecha.png");
     //PowerUps

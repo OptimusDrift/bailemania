@@ -64,18 +64,27 @@ function SpawnFlechas(flechaMPC, physics, jugador = 0, velocidad = 200) {
 
 //Colisiones
 function PrecionarTecla(flecha) {
-  if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyA)) {
-    return "izquierda";
-  }
-  if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyD)) {
-    return "derecha";
-  }
-  if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyS)) {
-    return "abajo";
-  }
-  if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyW)) {
-    return "arriba";
-  }
+  try {
+    if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyA)) {
+      return "izquierda";
+    }
+  } catch (error) {}
+  try {
+    if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyD)) {
+      return "derecha";
+    }
+  } catch (error) {}
+
+  try {
+    if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyS)) {
+      return "abajo";
+    }
+  } catch (error) {}
+  try {
+    if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyW)) {
+      return "arriba";
+    }
+  } catch (error) {}
   return "";
 }
 
@@ -84,26 +93,32 @@ function TeclaPrecionadaIgualAFlecha(flecha, tecla) {
 }
 //Jugador 0
 function CasiPerfectoJ0(flecha) {
-  if (PrecionarTecla(flecha) != "") {
+  var tecla = PrecionarTecla(flecha);
+  if (tecla != "") {
     if (flecha.scene.flechasGrupoJ0.getChildren()[0]) {
       EliminarFlecha(flecha, 0);
     }
-    if (TeclaPrecionadaIgualAFlecha(flecha, PrecionarTecla(flecha))) {
-      //Sumar puntos y aumentar la cantidad de flechas del total
-      console.log("40");
+    if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
+      AgregarPuntosCasiPerfecto();
     }
   }
+  AgregarFlechasJ0();
 }
 function PerfectoJ0(flecha) {
-  //if (PrecionarTecla(flecha)) {
-  //if (flecha.scene.flechasGrupoJ0.getChildren()[0]) {
-  //Sumar puntos
-  //}
-  //EliminarFlecha(flecha, 0);
-  //}
+  var tecla = PrecionarTecla(flecha);
+  if (tecla != "") {
+    if (flecha.scene.flechasGrupoJ0.getChildren()[0]) {
+      EliminarFlecha(flecha, 0);
+    }
+    if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
+      AgregarPuntosPerfecto();
+    }
+  }
+  AgregarFlechasJ0();
 }
 function PerdidoJ0(params) {
-  //EliminarFlecha(params, 0);
+  EliminarFlecha(params, 0);
+  AgregarFlechasJ0();
 }
 //Jugador 1
 function CasiPerfectoJ1(params) {
