@@ -13,11 +13,21 @@ function PowerUpCongelarJ1(params) {
   return tiempoCongelado;
 }
 
+function PowerUpDescongelarJ0(params) {
+  PausaJ0(params, 200);
+}
+
+function PowerUpDescongelarJ1(params) {
+  PausaJ1(params, 200);
+}
+
 function PowerUpBombaJ0(params) {
+  //Ejecutar sonido
   LimpiarFlechasEnPantalla(params, 0);
 }
 
 function PowerUpBombaJ1(params) {
+  //Ejecutar sonido
   LimpiarFlechasEnPantalla(params, 1);
 }
 

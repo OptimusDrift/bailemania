@@ -114,6 +114,8 @@ function PerfectoJ0(flecha) {
     }
     if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
       AgregarPuntosPerfecto();
+      flecha.scene.powerUpActivoJ1 = flecha.texture.key;
+      flecha.scene.jugador1 = true;
     }
   }
   AgregarFlechasJ0();
@@ -133,7 +135,10 @@ function CasiPerfectoJ1(params) {
 }
 function PerfectoJ1(params) {}
 function PerdidoJ1(params) {
-  //EliminarFlecha(params, 1);
+  EliminarFlecha(params, 1);
+  params.scene.powerUpActivoJ0 = params.texture.key;
+  params.scene.jugador0 = true;
+  AgregarFlechasJ0();
 }
 
 //Elimina la primera flecha de la cola

@@ -1,10 +1,16 @@
+//Tiempo de la cancion
 var tiempoRestante;
+//Colisiones con las flechas
+//Jugador 0
 var collidersPerfectoJ0;
 var collidersPerdidoJ0;
 var collidersCasiPerfectoJ0;
+//Jugador 1
 var collidersPerfectoJ1;
 var collidersPerdidoJ1;
 var collidersCasiPerfectoJ1;
+//Pausa del juego
+var pausa;
 
 class Scene2 extends Phaser.Scene {
   constructor() {
@@ -72,7 +78,21 @@ class Scene2 extends Phaser.Scene {
     collidersPerdidoJ1 = this.physics.add.staticGroup();
     collidersPerdidoJ1.create(600, 590, "perfecto");
 
-    //Pruebas borrar
+    //Variables escene
+    this.powerUpActivoJ0 = "";
+    this.powerUpActivoJ1 = "";
+    this.jugador0 = false;
+    this.jugador1 = false;
+    //Tiempo congelado
+    this.congelarJ0 = 0;
+    this.congelarJ1 = 0;
+    this.quemadoJ0 = 0;
+    this.quemadoJ1 = 0;
+    //Spawn de flechas
+    this.spawnJ0 = true;
+    this.spawnJ1 = true;
+
+    pausa = false;
     t = 0;
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -80,18 +100,95 @@ class Scene2 extends Phaser.Scene {
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
   }
   update(time, delta) {
-    //Reloj del juego
-    gameGlobalOptions.tiempoTotal += Reloj(delta);
-    //Pruebas
-    if (DesactivarReloj(gameGlobalOptions.tiempoTotal, t)) {
-      SpawnFlechas(this.flechaMPCJ1, this.physics, 1);
-      SpawnFlechas(this.flechaMPCJ0, this.physics, 0);
-      t = ActivarReloj(gameGlobalOptions.tiempoTotal, NumeroRandom(0.5, 0.2));
-    }
-    PowerUpGirarFlechas(this.flechaMPCJ0);
-    if (DesactivarReloj(gameGlobalOptions.tiempoTotal, j)) {
-      j = ActivarReloj(gameGlobalOptions.tiempoTotal, 3);
-    } else {
+    if (!pausa) {
+      //Reloj del juego
+      gameGlobalOptions.tiempoTotal += Reloj(delta);
+      if (this.powerUpActivoJ0 == "bomba") {
+        if (this.jugador0 == true) {
+          PowerUpBombaJ1(this.flechaMPCJ1);
+        }
+      }
+      if (this.powerUpActivoJ1 == "bomba") {
+        if (this.jugador1 == true) {
+          PowerUpBombaJ0(this.flechaMPCJ0);
+        }
+      }
+      if (this.powerUpActivoJ0 == "flechaHielo") {
+        if (this.jugador0 == true) {
+          this.congelarJ0 = ActivarReloj(
+            gameGlobalOptions.tiempoTotal,
+            PowerUpCongelarJ0(this.flechaMPCJ0)
+          );
+        }
+      }
+      if (this.powerUpActivoJ1 == "flechaHielo") {
+        if (this.jugador1 == true) {
+          this.congelarJ1 = ActivarReloj(
+            gameGlobalOptions.tiempoTotal,
+            PowerUpCongelarJ1(this.flechaMPCJ1)
+          );
+        }
+      }
+      if (this.powerUpActivoJ0 == "flechaFuego") {
+        if (this.jugador0 == true) {
+          this.quemadoJ0 = ActivarReloj(
+            gameGlobalOptions.tiempoTotal,
+            PowerUpFuegoJ0(this.flechaMPCJ0)
+          );
+        }
+      }
+      if (this.powerUpActivoJ1 == "flechaFuego") {
+        if (this.jugador1 == true) {
+          this.quemadoJ1 = ActivarReloj(
+            gameGlobalOptions.tiempoTotal,
+            PowerUpFuegoJ1(this.flechaMPCJ1)
+          );
+        }
+      }
+
+      this.powerUpActivoJ0 = "";
+      this.powerUpActivoJ1 = "";
+      this.jugador0 = false;
+      this.jugador1 = false;
+      if (!DesactivarReloj(gameGlobalOptions.tiempoTotal, this.congelarJ0)) {
+        PowerUpCongelarJ0(this.flechaMPCJ0);
+        this.spawnJ0 = false;
+      } else if (
+        !DesactivarReloj(gameGlobalOptions.tiempoTotal, this.quemadoJ0)
+      ) {
+        PowerUpFuegoJ0(this.flechaMPCJ0);
+      } else {
+        PowerUpDescongelarJ0(this.flechaMPCJ0);
+        this.spawnJ0 = true;
+      }
+
+      if (!DesactivarReloj(gameGlobalOptions.tiempoTotal, this.congelarJ1)) {
+        PowerUpCongelarJ1(this.flechaMPCJ1);
+        this.spawnJ1 = false;
+      } else if (
+        !DesactivarReloj(gameGlobalOptions.tiempoTotal, this.quemadoJ1)
+      ) {
+        PowerUpFuegoJ1(this.flechaMPCJ1);
+      } else {
+        PowerUpDescongelarJ1(this.flechaMPCJ1);
+        this.spawnJ1 = true;
+      }
+
+      //Pruebas
+      if (DesactivarReloj(gameGlobalOptions.tiempoTotal, t)) {
+        if (this.spawnJ0) {
+          SpawnFlechas(this.flechaMPCJ0, this.physics, 0);
+        }
+        if (this.spawnJ1) {
+          SpawnFlechas(this.flechaMPCJ1, this.physics, 1);
+        }
+        t = ActivarReloj(gameGlobalOptions.tiempoTotal, NumeroRandom(0.5, 0.2));
+      }
+      //PowerUpGirarFlechas(this.flechaMPCJ0);
+      if (DesactivarReloj(gameGlobalOptions.tiempoTotal, j)) {
+        j = ActivarReloj(gameGlobalOptions.tiempoTotal, 3);
+      } else {
+      }
     }
   }
 }
