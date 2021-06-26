@@ -36,12 +36,12 @@ class Scene3 extends Phaser.Scene {
     //Colisiiones J0
     collidersPerfectoJ0 = this.physics.add.staticGroup();
     collidersPerfectoJ0.create(200, 470, "perfecto");
-    collidersPerfecto.setVisible(false);
+    collidersPerfectoJ0.setVisible(false);
 
     collidersCasiPerfectoJ0 = this.physics.add.staticGroup();
     collidersCasiPerfectoJ0.create(200, 520, "perfecto");
     collidersCasiPerfectoJ0.create(200, 420, "perfecto");
-    collidersCasiPerfecto.setVisible(false);
+    collidersCasiPerfectoJ0.setVisible(false);
 
     //Contorno Flechas Jugador1
     this.add.image(70, 470, "flechaJugador1");
