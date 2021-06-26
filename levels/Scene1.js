@@ -19,6 +19,7 @@ class Scene1 extends Phaser.Scene {
     this.load.image("bomba", "./assets/bomba.png");
     this.load.image("flechaHielo", "./assets/flechaHielo.png");
     this.load.image("flechaFuego", "./assets/flechaFuego.png");
+    this.load.image("flechaGiratoria", "./assets/flechaGiratoria.png");
     //Colliders
     this.load.image("perfecto", "./assets/perfecto.png");
   }

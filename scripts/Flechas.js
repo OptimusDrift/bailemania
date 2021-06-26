@@ -49,7 +49,7 @@ function CrearFlecha(physics, velocidad, datosFlecha, jugador) {
 //Crea una flecha o muestra una del arreglo de flechas.
 //Crear arreglo de flacha MPC
 function SpawnFlechas(flechaMPC, physics, jugador = 0, velocidad = 200) {
-  datosFlecha = FlechaAleatoria();
+  datosFlecha = FlechaAleatoria(jugador);
   if (flechaMPC.getChildren().length >= 1) {
     flecha = flechaMPC.getChildren()[0];
     MostrarFlecha(flecha, velocidad, datosFlecha, jugador);
@@ -64,32 +64,6 @@ function SpawnFlechas(flechaMPC, physics, jugador = 0, velocidad = 200) {
   }
 }
 
-//Colisiones
-function PrecionarTecla(flecha) {
-  try {
-    if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyA)) {
-      return "izquierda";
-    }
-  } catch (error) {}
-  try {
-    if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyD)) {
-      return "derecha";
-    }
-  } catch (error) {}
-
-  try {
-    if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyS)) {
-      return "abajo";
-    }
-  } catch (error) {}
-  try {
-    if (Phaser.Input.Keyboard.JustDown(flecha.scene.keyW)) {
-      return "arriba";
-    }
-  } catch (error) {}
-  return "";
-}
-
 function TeclaPrecionadaIgualAFlecha(flecha, tecla) {
   return flecha.name == tecla;
 }
@@ -102,6 +76,7 @@ function CasiPerfectoJ0(flecha) {
     }
     if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
       AgregarPuntosCasiPerfecto();
+      AgregarAcertadasCasiPerfectoJ0();
     }
   }
   AgregarFlechasJ0();
@@ -114,6 +89,7 @@ function PerfectoJ0(flecha) {
     }
     if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
       AgregarPuntosPerfecto();
+      AgregarAcertadasPerfectoJ0();
       flecha.scene.powerUpActivoJ1 = flecha.texture.key;
       flecha.scene.jugador1 = true;
     }
@@ -122,23 +98,61 @@ function PerfectoJ0(flecha) {
 }
 function PerdidoJ0(params) {
   EliminarFlecha(params, 0);
+  AgregarFalladasJ0();
   AgregarFlechasJ0();
 }
 //Jugador 1
-function CasiPerfectoJ1(params) {
-  if (
-    Phaser.Input.Keyboard.JustDown(params.scene.keyA) &&
-    params.scene.flechasGrupoJ1.getChildren()[0] == params
-  ) {
-    //EliminarFlecha(params, 1);
+function CasiPerfectoJ1(flecha) {
+  var tecla;
+  if (flecha.scene.modo == 1) {
+    if (IACasiPerfecto()) {
+      EliminarFlecha(flecha, 1);
+      AgregarAcertadasCasiPerfectoJ1();
+    }
+  } else {
+    tecla = PrecionarTeclaJ1(flecha);
+    if (tecla != "") {
+      if (flecha.scene.flechasGrupoJ1.getChildren()[0]) {
+        EliminarFlecha(flecha, 1);
+      }
+      if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
+        AgregarPuntosPerfectoJ1();
+        AgregarAcertadasCasiPerfectoJ1();
+      }
+    }
   }
+  AgregarFlechasJ1();
 }
-function PerfectoJ1(params) {}
+function PerfectoJ1(flecha) {
+  var tecla;
+  if (flecha.scene.modo == 1) {
+    if (IAPerfecto()) {
+      EliminarFlecha(flecha, 1);
+      AgregarAcertadasPerfectoJ1();
+      flecha.scene.powerUpActivoJ0 = flecha.texture.key;
+      flecha.scene.jugador0 = true;
+    }
+  } else {
+    tecla = PrecionarTeclaJ1(flecha);
+    if (tecla != "") {
+      if (flecha.scene.flechasGrupoJ1.getChildren()[0]) {
+        EliminarFlecha(flecha, 1);
+      }
+      if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
+        flecha.scene.powerUpActivoJ0 = flecha.texture.key;
+        flecha.scene.jugador0 = true;
+        AgregarPuntosPerfectoJ1();
+        AgregarAcertadasPerfectoJ1();
+      }
+    }
+  }
+
+  AgregarFlechasJ1();
+}
 function PerdidoJ1(params) {
   EliminarFlecha(params, 1);
-  params.scene.powerUpActivoJ0 = params.texture.key;
-  params.scene.jugador0 = true;
-  AgregarFlechasJ0();
+  AgregarFalladasJ1();
+  AgregarFlechasJ1();
 }
 
 //Elimina la primera flecha de la cola
@@ -215,9 +229,9 @@ function NumeroRandom(max, min) {
 }
 colores = [0x57c96b, 0xe39cf0, 0xe0ca61, 0x7861c2];
 //Devuelve el tipo de flecha a mostrar
-function FlechaAleatoria() {
+function FlechaAleatoria(jugador) {
   sorteo = parseInt(NumeroRandom(4, 0));
-  powerUp = PowerUp();
+  powerUp = PowerUp(jugador);
   if (parseInt(sorteo) == 0) {
     return ["izquierda", colores[sorteo], 0, powerUp];
   }
@@ -230,19 +244,24 @@ function FlechaAleatoria() {
   return ["abajo", colores[sorteo], 4.5, powerUp];
 }
 
-function PowerUp() {
+function PowerUp(jugador) {
   p = NumeroRandom(100, 0);
-  //Poder de bomba
-  if (p < 5) {
-    return ["bomba", 0x000000, false];
-  }
-  //Poder de hielo
-  if (p < 10) {
-    return ["flechaHielo", 0x00f6ff, true];
-  }
-  //Poder de fuego
-  if (p < 20) {
-    return ["flechaFuego", 0xc60025, true];
+  if (Jugador0(jugador) || jugador == "IA2" || jugador == 1) {
+    //Poder de bomba
+    if (p < 2) {
+      return ["bomba", 0x000000, false];
+    }
+    //Poder de hielo
+    if (p < 5) {
+      return ["flechaHielo", 0x00f6ff, true];
+    }
+    //Poder de fuego
+    if (p < 8) {
+      return ["flechaFuego", 0xc60025, true];
+    }
+    if (p < 20 && jugador == "IA2") {
+      return ["flechaGiratoria", 0xc60025, true];
+    }
   }
   return ["flecha", 0x000000, false];
 }
@@ -261,7 +280,7 @@ function PausaJ1(params, velocidad) {
 
 function PausarOReanudarFlechas(params, velocidad = 0) {
   PausaJ0(params, velocidad);
-  //PausaJ1(params, velocidad);
+  PausaJ1(params, velocidad);
 }
 
 function LimpiarFlechasEnPantalla(params, jugador) {
@@ -279,6 +298,6 @@ function LimpiarFlechasEnPantalla(params, jugador) {
 
 function GirarFlechas(params) {
   params.scene.flechasGrupoJ0.getChildren().forEach((element) => {
-    element.rotation += 0.01;
+    element.rotation += 0.05;
   });
 }
