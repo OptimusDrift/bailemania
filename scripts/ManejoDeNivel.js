@@ -107,7 +107,9 @@ function Porcentaje(a, b) {
 
 function TerminoElJuego(tiempoTotal, tiempoFinal, flechas) {
   if (DesactivarReloj(tiempoTotal, tiempoFinal)) {
-    FinDelJuego();
+    if (FinDelJuego()) {
+      
+    }
     PausarOReanudarFlechas(flechas);
     //Mostrar animaciones jugador y enemigo
     //Mostrar menu de puntaje
@@ -115,7 +117,34 @@ function TerminoElJuego(tiempoTotal, tiempoFinal, flechas) {
   }
 }
 
-/*nota 0 = S, 
+function ObtenerNota(nota) {
+  if (nota <= 0) {
+    return "S";
+  }
+  if (nota <= 1) {
+    return "A";
+  }
+  if (nota <= 2) {
+    return "B";
+  }
+  if (nota <= 3) {
+    return "C";
+  }
+  if (nota <= 4) {
+    return "D";
+  }
+  return "F";
+}
+
+function MostrarNotas(notaJ0, notaJ1) {
+  var j0 = ObtenerNota(notaJ0);
+  var j1 = ObtenerNota(notaJ1);
+  console.log(j0);
+  console.log(j1);
+}
+
+/*notas
+0 = S
 1 = A
 2 = B
 3 = C
@@ -123,13 +152,13 @@ function TerminoElJuego(tiempoTotal, tiempoFinal, flechas) {
 5 = F
 */
 function FinDelJuego() {
+  finDelJuego = true;
   var notaJ0 = 5;
   var notaJ1 = 5;
   var j0 = flechasAcertadasPerfectoJ0 + flechasAcertadasCasiPerfectoJ0 / 2;
   var j1 = flechasAcertadasPerfectoJ1 + flechasAcertadasCasiPerfectoJ1 / 2;
   var porcentajeJ0 = Porcentaje(j0, fechasJ0);
   var porcentajeJ1 = Porcentaje(j1, fechasJ1);
-
   if (fechasJ0 == j0) {
     notaJ0 = 0;
   } else if (porcentajeJ0 >= 80) {
@@ -157,7 +186,7 @@ function FinDelJuego() {
   } else {
     notaJ1 = 5;
   }
-  //MostrarNotas(notaJ0,notaJ1);
+  MostrarNotas(notaJ0, notaJ1);
   if (notaJ0 <= notaJ1) {
     return false;
   }

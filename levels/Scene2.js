@@ -11,6 +11,7 @@ var collidersPerdidoJ1;
 var collidersCasiPerfectoJ1;
 //Pausa del juego
 var pausa;
+var finDelJuego;
 
 class Scene2 extends Phaser.Scene {
   constructor() {
@@ -101,6 +102,7 @@ class Scene2 extends Phaser.Scene {
     this.tiempoCanncion = 3;
 
     pausa = false;
+    finDelJuego = false;
     t = 0;
     //Teclas Jugador 0
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -118,7 +120,7 @@ class Scene2 extends Phaser.Scene {
         ReanudarJuego(this.flechaMPCJ0);
       }
     }
-    if (!pausa) {
+    if (!pausa && !finDelJuego) {
       //Reloj del juego
       gameGlobalOptions.tiempoTotal += Reloj(delta);
       if (
