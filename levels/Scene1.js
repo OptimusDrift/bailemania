@@ -42,5 +42,7 @@ class Scene1 extends Phaser.Scene {
     var StrikerGames = this.add.image(95, 580, "StrikerGames");
     StrikerGames.setInteractive();
     StrikerGames.on("pointerdown", () => this.scene.start("Creditos"));
+
+    ReiniciarVidas();
   }
 }
