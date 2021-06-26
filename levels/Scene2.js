@@ -240,7 +240,7 @@ class Scene2 extends Phaser.Scene {
             SpawnFlechas(this.flechaMPCJ0, this.physics, 0);
           }
           if (this.spawnJ1) {
-            SpawnFlechas(this.flechaMPCJ1, this.physics, "IA2");
+            SpawnFlechas(this.flechaMPCJ1, this.physics, "IA");
           }
           t = ActivarReloj(
             gameGlobalOptions.tiempoTotal,
