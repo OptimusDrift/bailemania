@@ -17,9 +17,9 @@ var resultado;
 var btnContinuar;
 var btnReintentar;
 
-class Scene2 extends Phaser.Scene {
+class Scene5 extends Phaser.Scene {
   constructor() {
-    super("juegonivel1");
+    super("juegonivel3");
   }
 
   preload() {}
@@ -113,12 +113,12 @@ class Scene2 extends Phaser.Scene {
     btnContinuar.setVisible(false);
     btnContinuar.setDepth(10);
     btnContinuar.setInteractive();
-    btnContinuar.on("pointerdown", () => this.scene.start("juegonivel3"));
+    btnContinuar.on("pointerdown", () => this.scene.start("creditos"));
     btnReintentar = this.add.image(190, 490, "BotonReintentar");
     btnReintentar.setVisible(false);
     btnReintentar.setDepth(10);
     btnReintentar.setInteractive();
-    btnReintentar.on("pointerdown", () => this.scene.start("juegonivel1"));
+    btnReintentar.on("pointerdown", () => this.scene.start("juegonivel3"));
 
     pausa = false;
     finDelJuego = false;

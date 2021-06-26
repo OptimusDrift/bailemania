@@ -108,8 +108,14 @@ function Porcentaje(a, b) {
 function TerminoElJuego(tiempoTotal, tiempoFinal, flechas) {
   if (DesactivarReloj(tiempoTotal, tiempoFinal)) {
     if (FinDelJuego()) {
-      
+      btnReintentar.setPosition(190, 490);
+      btnContinuar.setVisible(true);
+      btnReintentar.setVisible(true);
+    } else {
+      btnReintentar.setPosition(400, 490);
+      btnReintentar.setVisible(true);
     }
+    resultado.setVisible(true);
     PausarOReanudarFlechas(flechas);
     //Mostrar animaciones jugador y enemigo
     //Mostrar menu de puntaje

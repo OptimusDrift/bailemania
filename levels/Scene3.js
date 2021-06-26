@@ -63,19 +63,21 @@ class Scene3 extends Phaser.Scene {
 
     collidersPerdidoJ0 = this.physics.add.staticGroup();
     collidersPerdidoJ0.create(200, 590, "perfecto");
+    collidersPerdidoJ0.setVisible(false);
 
     //Colisiiones J1
     collidersPerfectoJ1 = this.physics.add.staticGroup();
     collidersPerfectoJ1.create(600, 470, "perfecto");
-    //collidersPerfecto.setVisible(false);
+    collidersPerfectoJ1.setVisible(false);
 
     collidersCasiPerfectoJ1 = this.physics.add.staticGroup();
     collidersCasiPerfectoJ1.create(600, 520, "perfecto");
     collidersCasiPerfectoJ1.create(600, 420, "perfecto");
-    //collidersCasiPerfecto.setVisible(false);
+    collidersPerfectoJ1.setVisible(false);
 
     collidersPerdidoJ1 = this.physics.add.staticGroup();
     collidersPerdidoJ1.create(600, 590, "perfecto");
+    collidersPerdidoJ1.setVisible(false);
 
     //Variables escene
     this.powerUpActivoJ0 = "";
@@ -93,6 +95,14 @@ class Scene3 extends Phaser.Scene {
 
     pausa = false;
     t = 0;
+    //Menu de resultados
+    //Comandos Temporales (Borrar)
+    this.add.image(400, 300, "Resultados");
+    this.add.image(610, 490, "BotonContinuar");
+    this.add.image(190, 490, "BotonReintentar");
+
+    this.add.image(400, 300, "Resultados");
+    this.add.image(400, 490, "BotonReintentar");
 
     //Comandos a borrar despues
     this.keyK = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K);
@@ -209,18 +219,6 @@ class Scene3 extends Phaser.Scene {
         j = ActivarReloj(gameGlobalOptions.tiempoTotal, 3);
       } else {
       }
-    }
-    //Comandos Temporales (Borrar)
-    if (this.keyK.isDown)
-    {
-      this.add.image(400, 300, "Resultados");
-      this.add.image(610, 490, "BotonContinuar");
-      this.add.image(190, 490, "BotonReintentar");
-    }
-    if (this.keyJ.isDown)
-    {
-      this.add.image(400, 300, "Resultados");
-      this.add.image(400, 490, "BotonReintentar");
     }
   }
 }

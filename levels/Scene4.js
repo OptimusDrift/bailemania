@@ -1,6 +1,6 @@
 class Scene4 extends Phaser.Scene {
   constructor() {
-    super("Creditos");
+    super("creditos");
   }
 
   preload() {
@@ -9,7 +9,7 @@ class Scene4 extends Phaser.Scene {
   }
 
   create() {
-    var Creditos = this.add.image(400, 300, "Creditos");
+    this.add.image(400, 300, "Creditos");
 
     var Regreso = this.add.image(65, 560, "Regreso");
     Regreso.setInteractive();
