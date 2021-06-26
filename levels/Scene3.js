@@ -93,6 +93,11 @@ class Scene3 extends Phaser.Scene {
 
     pausa = false;
     t = 0;
+
+    //Comandos a borrar despues
+    this.keyK = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K);
+    this.keyJ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
+
     //Teclas Jugador 0
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -204,6 +209,18 @@ class Scene3 extends Phaser.Scene {
         j = ActivarReloj(gameGlobalOptions.tiempoTotal, 3);
       } else {
       }
+    }
+    //Comandos Temporales (Borrar)
+    if (this.keyK.isDown)
+    {
+      this.add.image(400, 300, "Resultados");
+      this.add.image(610, 490, "BotonContinuar");
+      this.add.image(190, 490, "BotonReintentar");
+    }
+    if (this.keyJ.isDown)
+    {
+      this.add.image(400, 300, "Resultados");
+      this.add.image(400, 490, "BotonReintentar");
     }
   }
 }

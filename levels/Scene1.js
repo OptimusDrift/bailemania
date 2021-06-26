@@ -9,6 +9,11 @@ class Scene1 extends Phaser.Scene {
     this.load.image("DosJugadores", "./assets/DosJugadores.png");
     this.load.image("StrikerGames", "./assets/StrikerGames.png");
 
+    //Assets Pantalla Resultados
+    this.load.image("Resultados", "./assets/RESULTADOS.png");
+    this.load.image("BotonContinuar", "./assets/BotonContinuar.png");
+    this.load.image("BotonReintentar", "./assets/BotonReintentar.png");
+
     //assets levels
     //Contorno de las flechas
     this.load.image("flechaJugador1", "./assets/FlechaJugador1.png");
