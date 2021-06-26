@@ -129,6 +129,8 @@ class Scene5 extends Phaser.Scene {
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+
+    ReiniciarEstadisticas();
   }
   update(time, delta) {
     if (Phaser.Input.Keyboard.JustDown(this.keyP)) {

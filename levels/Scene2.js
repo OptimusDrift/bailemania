@@ -26,7 +26,6 @@ class Scene2 extends Phaser.Scene {
   create() {
     //Inicialización del Reloj
     gameGlobalOptions.tiempoTotal = 0;
-
     this.modo = 1;
 
     //Arreglos de flechas a agregar en el mapa Jugador 0
@@ -129,6 +128,8 @@ class Scene2 extends Phaser.Scene {
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+
+    ReiniciarEstadisticas();
   }
   update(time, delta) {
     if (Phaser.Input.Keyboard.JustDown(this.keyP)) {

@@ -145,8 +145,6 @@ function ObtenerNota(nota) {
 function MostrarNotas(notaJ0, notaJ1) {
   var j0 = ObtenerNota(notaJ0);
   var j1 = ObtenerNota(notaJ1);
-  console.log(j0);
-  console.log(j1);
 }
 
 /*notas
@@ -193,8 +191,25 @@ function FinDelJuego() {
     notaJ1 = 5;
   }
   MostrarNotas(notaJ0, notaJ1);
-  if (notaJ0 <= notaJ1) {
+  console.log(fechasJ0);
+  console.log(fechasJ1);
+  console.log(j0);
+  console.log(j1);
+  if (notaJ0 >= notaJ1) {
     return false;
   }
   return true;
+}
+
+function ReiniciarEstadisticas() {
+  ReiniciarPuntos();
+  ReiniciarPuntosJ1();
+  ReiniciarFlechasJ0();
+  ReiniciarFlechasJ1();
+  ReiniciarAcertadasPerfectoJ0();
+  ReiniciarAcertadasPerfectoJ1();
+  ReiniciarAcertadasCasiPerfectoJ0();
+  ReiniciarAcertadasCasiPerfectoJ1();
+  ReiniciarFalladasJ0();
+  ReiniciarFalladasJ1();
 }

@@ -73,19 +73,20 @@ function CasiPerfectoJ0(flecha) {
   if (tecla != "") {
     if (flecha.scene.flechasGrupoJ0.getChildren()[0]) {
       EliminarFlecha(flecha, 0);
+      AgregarFlechasJ0();
     }
     if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
       AgregarPuntosCasiPerfecto();
       AgregarAcertadasCasiPerfectoJ0();
     }
   }
-  AgregarFlechasJ0();
 }
 function PerfectoJ0(flecha) {
   var tecla = PrecionarTecla(flecha);
   if (tecla != "") {
     if (flecha.scene.flechasGrupoJ0.getChildren()[0]) {
       EliminarFlecha(flecha, 0);
+      AgregarFlechasJ0();
     }
     if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
       AgregarPuntosPerfecto();
@@ -94,7 +95,6 @@ function PerfectoJ0(flecha) {
       flecha.scene.jugador1 = true;
     }
   }
-  AgregarFlechasJ0();
 }
 function PerdidoJ0(params) {
   EliminarFlecha(params, 0);
@@ -108,12 +108,14 @@ function CasiPerfectoJ1(flecha) {
     if (IACasiPerfecto()) {
       EliminarFlecha(flecha, 1);
       AgregarAcertadasCasiPerfectoJ1();
+      AgregarFlechasJ1();
     }
   } else {
     tecla = PrecionarTeclaJ1(flecha);
     if (tecla != "") {
       if (flecha.scene.flechasGrupoJ1.getChildren()[0]) {
         EliminarFlecha(flecha, 1);
+        AgregarFlechasJ1();
       }
       if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
         AgregarPuntosPerfectoJ1();
@@ -121,13 +123,13 @@ function CasiPerfectoJ1(flecha) {
       }
     }
   }
-  AgregarFlechasJ1();
 }
 function PerfectoJ1(flecha) {
   var tecla;
   if (flecha.scene.modo == 1) {
     if (IAPerfecto()) {
       EliminarFlecha(flecha, 1);
+      AgregarFlechasJ1();
       AgregarAcertadasPerfectoJ1();
       flecha.scene.powerUpActivoJ0 = flecha.texture.key;
       flecha.scene.jugador0 = true;
@@ -137,6 +139,7 @@ function PerfectoJ1(flecha) {
     if (tecla != "") {
       if (flecha.scene.flechasGrupoJ1.getChildren()[0]) {
         EliminarFlecha(flecha, 1);
+        AgregarFlechasJ1();
       }
       if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
         flecha.scene.powerUpActivoJ0 = flecha.texture.key;
@@ -146,8 +149,6 @@ function PerfectoJ1(flecha) {
       }
     }
   }
-
-  AgregarFlechasJ1();
 }
 function PerdidoJ1(params) {
   EliminarFlecha(params, 1);
