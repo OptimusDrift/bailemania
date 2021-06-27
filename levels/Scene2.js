@@ -174,8 +174,10 @@ class Scene2 extends Phaser.Scene {
     this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
     ReiniciarEstadisticas();
-    j1 = this.physics.add.sprite(200, 300, "enemigo1Up").setScale(2);
-    j1.anims.play("derrotaJ2");
+    j1 = this.physics.add.sprite(200, 300, "j1Idle").setScale(2);
+    j1.anims.play("idleJ1");
+    j2 = this.physics.add.sprite(600, 300, "enemigo1Idle").setScale(2);
+    j2.anims.play("enemigo1Idle");
   }
   update(time, delta) {
     if (Phaser.Input.Keyboard.JustDown(this.keyP) && !finDelJuego) {

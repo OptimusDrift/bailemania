@@ -170,9 +170,9 @@ function FinDelJuego() {
   var notaJ0 = 5;
   var notaJ1 = 5;
   var j0 = flechasAcertadasPerfectoJ0 + flechasAcertadasCasiPerfectoJ0 / 2;
-  var j1 = flechasAcertadasPerfectoJ1 + flechasAcertadasCasiPerfectoJ1 / 2;
+  var jj1 = flechasAcertadasPerfectoJ1 + flechasAcertadasCasiPerfectoJ1 / 2;
   var porcentajeJ0 = Porcentaje(j0, fechasJ0);
-  var porcentajeJ1 = Porcentaje(j1, fechasJ1);
+  var porcentajeJ1 = Porcentaje(jj1, fechasJ1);
   if (fechasJ0 == j0) {
     notaJ0 = 0;
   } else if (porcentajeJ0 >= 80) {
@@ -187,7 +187,7 @@ function FinDelJuego() {
     notaJ0 = 5;
   }
 
-  if (fechasJ1 == j1) {
+  if (fechasJ1 == jj1) {
     notaJ1 = 0;
   } else if (porcentajeJ1 >= 80) {
     notaJ1 = 1;
@@ -202,8 +202,10 @@ function FinDelJuego() {
   }
   MostrarNotas(notaJ0, notaJ1);
   if (notaJ0 >= notaJ1) {
+    j1.anims.play("derrotaJ1");
     return false;
   }
+  j1.anims.play("victoryJ1");
   return true;
 }
 

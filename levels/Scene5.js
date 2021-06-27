@@ -22,6 +22,9 @@ var btnPausa;
 var vida;
 var musica;
 
+var j1;
+var j2;
+
 class Scene5 extends Phaser.Scene {
   constructor() {
     super("juegonivel3");
@@ -172,6 +175,10 @@ class Scene5 extends Phaser.Scene {
     this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
     ReiniciarEstadisticas();
+    j1 = this.physics.add.sprite(200, 300, "j1Idle").setScale(2);
+    j1.anims.play("idleJ1");
+    j2 = this.physics.add.sprite(600, 300, "enemigo2Idle").setScale(2);
+    j2.anims.play("enemigo2Idle");
   }
   update(time, delta) {
     if (Phaser.Input.Keyboard.JustDown(this.keyP) && !finDelJuego) {
