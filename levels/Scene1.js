@@ -168,7 +168,7 @@ class Scene1 extends Phaser.Scene {
     this.load.image("VolverInicio", "./assets/BotonVolverInicio.png");
 
     //Fondos niveles
-    this.load.image("lv1", "./assets/fondo1.png");
+    this.load.image("lv1", "./assets/Fondo1.png");
     this.load.image("lv2", "./assets/fondo2.png");
 
     //assets levels
