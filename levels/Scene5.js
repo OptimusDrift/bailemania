@@ -24,6 +24,7 @@ var musica;
 
 var j1;
 var j2;
+var iAActiva = "IA2";
 
 class Scene5 extends Phaser.Scene {
   constructor() {
@@ -32,6 +33,7 @@ class Scene5 extends Phaser.Scene {
 
   preload() {}
   create() {
+    iAActiva = "IA2";
     //Inicialización del Reloj
     gameGlobalOptions.tiempoTotal = 0;
     this.modo = 1;
@@ -291,7 +293,7 @@ class Scene5 extends Phaser.Scene {
             SpawnFlechas(this.flechaMPCJ0, this.physics, 0);
           }
           if (this.spawnJ1) {
-            SpawnFlechas(this.flechaMPCJ1, this.physics, "IA2");
+            SpawnFlechas(this.flechaMPCJ1, this.physics, iAActiva);
           }
           t = ActivarReloj(
             gameGlobalOptions.tiempoTotal,

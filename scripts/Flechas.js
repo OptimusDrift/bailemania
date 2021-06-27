@@ -105,7 +105,7 @@ function PerdidoJ0(params) {
 function CasiPerfectoJ1(flecha) {
   var tecla;
   if (flecha.scene.modo == 1) {
-    if (IACasiPerfecto()) {
+    if (IACasiPerfecto(flecha)) {
       EliminarFlecha(flecha, 1);
       AgregarAcertadasCasiPerfectoJ1();
       AgregarFlechasJ1();
@@ -127,7 +127,7 @@ function CasiPerfectoJ1(flecha) {
 function PerfectoJ1(flecha) {
   var tecla;
   if (flecha.scene.modo == 1) {
-    if (IAPerfecto()) {
+    if (IAPerfecto(flecha)) {
       EliminarFlecha(flecha, 1);
       AgregarFlechasJ1();
       AgregarAcertadasPerfectoJ1();

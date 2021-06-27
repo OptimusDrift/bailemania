@@ -16,6 +16,8 @@ var musica;
 //
 var resultado;
 var btnMenuPrincipal;
+var j1;
+var j2;
 class Scene3 extends Phaser.Scene {
   constructor() {
     super("Juegonivel2");
@@ -153,6 +155,12 @@ class Scene3 extends Phaser.Scene {
     this.keyRight = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.RIGHT
     );
+
+    //Sprites jugadores
+    j1 = this.physics.add.sprite(200, 300, "j1Idle").setScale(2);
+    j1.anims.play("idleJ1");
+    j2 = this.physics.add.sprite(600, 300, "j2Idle").setScale(2);
+    j2.anims.play("j2Idle");
   }
   update(time, delta) {
     if (Phaser.Input.Keyboard.JustDown(this.keyP) && !finDelJuego) {
@@ -268,13 +276,9 @@ class Scene3 extends Phaser.Scene {
             NumeroRandom(0.5, 0.2)
           );
         }
-        if (DesactivarReloj(gameGlobalOptions.tiempoTotal, j)) {
-          j = ActivarReloj(gameGlobalOptions.tiempoTotal, 3);
-        }
       }
     }
   }
 }
 //variables a borrar
 var t;
-var j = 3;

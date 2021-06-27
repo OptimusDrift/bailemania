@@ -202,8 +202,18 @@ function FinDelJuego() {
   }
   MostrarNotas(notaJ0, notaJ1);
   if (notaJ0 >= notaJ1) {
+    if (iAActiva == "IA") {
+      j2.anims.play("enemigo1Victory");
+    } else {
+      j2.anims.play("enemigo2Victory");
+    }
     j1.anims.play("derrotaJ1");
     return false;
+  }
+  if (iAActiva == "IA") {
+    j2.anims.play("enemigo1Derrota");
+  } else {
+    j2.anims.play("enemigo2Derrota");
   }
   j1.anims.play("victoryJ1");
   return true;

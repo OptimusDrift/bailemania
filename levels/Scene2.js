@@ -24,6 +24,7 @@ var vidaPerdida;
 var musica;
 //Jugadores
 var j1;
+var iAActiva = "IA";
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("juegonivel1");
@@ -31,6 +32,7 @@ class Scene2 extends Phaser.Scene {
 
   preload() {}
   create() {
+    iAActiva = "IA";
     //Inicialización del Reloj
     gameGlobalOptions.tiempoTotal = 0;
     this.modo = 1;
@@ -289,7 +291,7 @@ class Scene2 extends Phaser.Scene {
             SpawnFlechas(this.flechaMPCJ0, this.physics, 0);
           }
           if (this.spawnJ1) {
-            SpawnFlechas(this.flechaMPCJ1, this.physics, "IA");
+            SpawnFlechas(this.flechaMPCJ1, this.physics, iAActiva);
           }
           t = ActivarReloj(
             gameGlobalOptions.tiempoTotal,
