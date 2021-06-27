@@ -20,6 +20,7 @@ var btnMenuPrincipal;
 var btnPausa;
 
 var vida;
+var musica;
 
 class Scene5 extends Phaser.Scene {
   constructor() {
@@ -134,6 +135,10 @@ class Scene5 extends Phaser.Scene {
     btnPausa.setDepth(10);
     btnPausa.setInteractive();
 
+    //Musica
+    musica = this.sound.add("MusicaUnJugadorLv2");
+    ReproducirMusica(musica);
+    //Vidas
     vida = [];
     vida[0] = this.add.image(400, 50, "Vida");
     vida[1] = this.add.image(400, 100, "Vida");

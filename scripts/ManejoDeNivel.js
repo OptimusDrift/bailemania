@@ -92,14 +92,14 @@ function ReiniciarFalladasJ1() {
 function PausarJuego(flechas) {
   btnPausa.setVisible(true);
   PausarOReanudarFlechas(flechas);
-  //PausarMusica();
+  PausarMusica(musica);
   //Mostrar Menu
 }
 
 function ReanudarJuego(flechas) {
   btnPausa.setVisible(false);
   PausarOReanudarFlechas(flechas, 200);
-  //ReanudarMusica();
+  ContinuarMusica(musica);
   //Ocultar Menu
 }
 
@@ -115,8 +115,6 @@ function TerminoElJuego(tiempoTotal, tiempoFinal, flechas) {
       btnReintentar.setVisible(true);
     } else {
       vidasJ0--;
-      //vida[vidasJ0].setVisible(false);
-      //vidaPerdida[vidasJ0].setVisible(true);
       if (vidasJ0 < 0) {
         btnMenuPrincipal.setVisible(true);
       } else {
@@ -126,8 +124,7 @@ function TerminoElJuego(tiempoTotal, tiempoFinal, flechas) {
     }
     resultado.setVisible(true);
     PausarOReanudarFlechas(flechas);
-    //Mostrar animaciones jugador y enemigo
-    //Mostrar menu de puntaje
+    PararMusica(musica);
     return true;
   }
 }

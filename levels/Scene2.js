@@ -21,7 +21,7 @@ var btnPausa;
 var vida;
 var vidaPerdida;
 //Musica
-//var Musica1;
+var musica;
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("juegonivel1");
@@ -110,8 +110,8 @@ class Scene2 extends Phaser.Scene {
     this.tiempoCanncion = 3;
 
     //Musica
-    //Musica1 = this.sound.add("MusicaUnJugador");
-    //Musica1.play();
+    musica = this.sound.add("MusicaUnJugadorLv1");
+    ReproducirMusica(musica);
 
     //Menu de nivel superado o no superado
     resultado = this.add.image(400, 300, "Resultados");
