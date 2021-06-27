@@ -15,6 +15,22 @@ class Scene1 extends Phaser.Scene {
     this.load.image("BotonContinuar", "./assets/BotonContinuar.png");
     this.load.image("BotonReintentar", "./assets/BotonReintentar.png");
 
+    //Sprites jugador 1
+    this.load.spritesheet("j1Idle", "assets/J1Idle.png", {
+      frameWidth: 51,
+      frameHeight: 103,
+    });
+
+    this.load.spritesheet("j1Up", "assets/J1Up.png", {
+      frameWidth: 55,
+      frameHeight: 128,
+    });
+    //93 110
+    this.load.spritesheet("j1Abajo", "assets/J1Abajo.png", {
+      frameWidth: 60,
+      frameHeight: 110,
+    });
+
     //Vidas
     this.load.image("Vida", "./assets/Vida.png");
     this.load.image("VidaPerdida", "./assets/VidaPerdida.png");
@@ -37,13 +53,19 @@ class Scene1 extends Phaser.Scene {
     this.load.image("flechaJugador2", "./assets/FlechaJugador2.png");
     //Flechas
     this.load.image("flecha", "./assets/flecha.png");
+    //Creditos
+    this.load.image("creditos", "assets/EscenaCreditos.png");
+    this.load.image("Regreso", "./assets/FlechaRegreso.png");
     //PowerUps
     this.load.image("bomba", "./assets/bomba.png");
+    this.load.image("goldPapa", "assets/goldPapa.png");
     this.load.image("flechaHielo", "./assets/flechaHielo.png");
     this.load.image("flechaFuego", "./assets/flechaFuego.png");
     this.load.image("flechaGiratoria", "./assets/flechaGiratoria.png");
+
     //Colliders
     this.load.image("perfecto", "./assets/perfecto.png");
+    this.load.image("empresario", "./assets/empresario.png");
 
     //Musica
     this.load.audio("MusicaPrincipal", "./sound/MusicaMenuPrincipal.mp3");
@@ -68,6 +90,75 @@ class Scene1 extends Phaser.Scene {
       this
     );
 
+    this.anims.create({
+      key: "idleJ1",
+      frames: this.anims.generateFrameNumbers("j1Idle", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "abajoJ1",
+      frames: this.anims.generateFrameNumbers("j1Abajo", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "upJ1",
+      frames: this.anims.generateFrameNumbers("j1Up", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    /*
+    this.anims.create({
+      key: "rightJ1",
+      frames: this.anims.generateFrameNumbers("j1Rigth", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "leftJ1",
+      frames: this.anims.generateFrameNumbers("j1Left", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "victoryJ1",
+      frames: this.anims.generateFrameNumbers("j1Victory", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "lostJ1",
+      frames: this.anims.generateFrameNumbers("j1Lost", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+*/
     /*this.add.text(310, 315, "Un Jugador", 
     { 
       color: "#61b4cf", 

@@ -22,6 +22,8 @@ var vida;
 var vidaPerdida;
 //Musica
 var musica;
+//Jugadores
+var j1;
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("juegonivel1");
@@ -35,7 +37,7 @@ class Scene2 extends Phaser.Scene {
 
     //Fondo
     var fondo = this.physics.add.staticGroup();
-    fondo.create(400, 200, "lv1");
+    fondo.create(400, 300, "lv1");
 
     //Arreglos de flechas a agregar en el mapa Jugador 0
     this.flechasGrupoJ0 = this.add.group();
@@ -172,6 +174,8 @@ class Scene2 extends Phaser.Scene {
     this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
     ReiniciarEstadisticas();
+    j1 = this.physics.add.sprite(300, 450, "j1Idle");
+    j1.anims.play("idleJ1");
   }
   update(time, delta) {
     if (Phaser.Input.Keyboard.JustDown(this.keyP) && !finDelJuego) {
