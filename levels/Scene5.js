@@ -116,12 +116,12 @@ class Scene5 extends Phaser.Scene {
     btnContinuar.setVisible(false);
     btnContinuar.setDepth(10);
     btnContinuar.setInteractive();
-    btnContinuar.on("pointerdown", () => this.scene.start("juegonivel3"));
+    btnContinuar.on("pointerdown", () => this.scene.start("creditos"));
     btnReintentar = this.add.image(190, 490, "BotonReintentar");
     btnReintentar.setVisible(false);
     btnReintentar.setDepth(10);
     btnReintentar.setInteractive();
-    btnReintentar.on("pointerdown", () => this.scene.start("juegonivel1"));
+    btnReintentar.on("pointerdown", () => this.scene.start("juegonivel3"));
 
     btnMenuPrincipal = this.add.image(400, 480, "VolverInicio");
     btnMenuPrincipal.setVisible(false);
