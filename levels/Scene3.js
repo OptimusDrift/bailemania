@@ -101,8 +101,12 @@ class Scene3 extends Phaser.Scene {
     this.add.image(610, 490, "BotonContinuar");
     this.add.image(190, 490, "BotonReintentar");
 
-    this.add.image(400, 300, "Resultados");
-    this.add.image(400, 490, "BotonReintentar");
+    //Pausa
+    this.add.image(400, 300, "EscenaPausa");
+
+    //Jugadores
+    this.add.image(400, 300, "JcJ");
+    this.add.image(400, 550, "VolverInicio");
 
     //Comandos a borrar despues
     this.keyK = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K);
@@ -224,17 +228,6 @@ class Scene3 extends Phaser.Scene {
         j = ActivarReloj(gameGlobalOptions.tiempoTotal, 3);
       } else {
       }
-    }
-
-    if(this.keyK.isDown)
-    {
-      this.add.image(400, 300, "EscenaPausa");
-    }
-    
-    if(this.keyJ.isDown)
-    {
-      this.add.image(400, 300, "JcJ");
-      this.add.image(400, 550, "VolverInicio");
     }
   }
 }

@@ -16,6 +16,7 @@ var finDelJuego;
 var resultado;
 var btnContinuar;
 var btnReintentar;
+var btnMenuPrincipal;
 
 class Scene2 extends Phaser.Scene {
   constructor() {
@@ -118,6 +119,12 @@ class Scene2 extends Phaser.Scene {
     btnReintentar.setDepth(10);
     btnReintentar.setInteractive();
     btnReintentar.on("pointerdown", () => this.scene.start("juegonivel1"));
+
+    btnMenuPrincipal = this.add.image(400, 480, "VolverInicio");
+    btnMenuPrincipal.setVisible(false);
+    btnMenuPrincipal.setDepth(10);
+    btnMenuPrincipal.setInteractive();
+    btnMenuPrincipal.on("pointerdown", () => this.scene.start("inicio"));
 
     pausa = false;
     finDelJuego = false;
