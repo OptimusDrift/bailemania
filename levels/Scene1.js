@@ -27,6 +27,8 @@ class Scene1 extends Phaser.Scene {
     this.load.image("JcE", "./assets/JuegoTerminadoJcE.png");
     this.load.image("VolverInicio", "./assets/BotonVolverInicio.png");
 
+    //Resultados de la partida
+
     //assets levels
     //Contorno de las flechas
     this.load.image("flechaJugador1", "./assets/FlechaJugador1.png");

@@ -107,22 +107,24 @@ function Porcentaje(a, b) {
   return parseInt((100 * a) / b);
 }
 
-function TerminoElJuego(tiempoTotal, tiempoFinal, flechas) {
+function TerminoElJuego(tiempoTotal, tiempoFinal, flechas, modo) {
   if (DesactivarReloj(tiempoTotal, tiempoFinal)) {
-    if (FinDelJuego()) {
-      btnReintentar.setPosition(190, 490);
-      btnContinuar.setVisible(true);
-      btnReintentar.setVisible(true);
-    } else {
-      vidasJ0--;
-      if (vidasJ0 < 0) {
-        btnMenuPrincipal.setVisible(true);
-      } else {
-        btnReintentar.setPosition(400, 490);
+    if (modo == 1) {
+      if (FinDelJuego()) {
+        btnReintentar.setPosition(190, 490);
+        btnContinuar.setVisible(true);
         btnReintentar.setVisible(true);
+      } else {
+        vidasJ0--;
+        if (vidasJ0 < 0) {
+          btnMenuPrincipal.setVisible(true);
+        } else {
+          btnReintentar.setPosition(400, 490);
+          btnReintentar.setVisible(true);
+        }
       }
+      resultado.setVisible(true);
     }
-    resultado.setVisible(true);
     PausarOReanudarFlechas(flechas);
     PararMusica(musica);
     return true;

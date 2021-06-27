@@ -107,7 +107,7 @@ class Scene2 extends Phaser.Scene {
     this.spawnJ1 = true;
 
     //Tiempo de la cancion
-    this.tiempoCanncion = 3;
+    this.tiempoCancion = 3;
 
     //Musica
     musica = this.sound.add("MusicaUnJugadorLv1");
@@ -184,8 +184,9 @@ class Scene2 extends Phaser.Scene {
       if (
         !TerminoElJuego(
           gameGlobalOptions.tiempoTotal,
-          this.tiempoCanncion,
-          this.flechaMPCJ0
+          this.tiempoCancion,
+          this.flechaMPCJ0,
+          this.modo
         )
       ) {
         //PowerUps
@@ -285,13 +286,9 @@ class Scene2 extends Phaser.Scene {
             NumeroRandom(0.5, 0.2)
           );
         }
-        if (DesactivarReloj(gameGlobalOptions.tiempoTotal, j)) {
-          j = ActivarReloj(gameGlobalOptions.tiempoTotal, 3);
-        }
       }
     }
   }
 }
 //variabnles a borrar
 var t;
-var j = 3;

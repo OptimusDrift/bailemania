@@ -117,7 +117,7 @@ class Scene5 extends Phaser.Scene {
     btnContinuar.setVisible(false);
     btnContinuar.setDepth(10);
     btnContinuar.setInteractive();
-    btnContinuar.on("pointerdown", () => this.scene.start("creditos"));
+    btnContinuar.on("pointerdown", () => this.scene.start("resultados"));
     btnReintentar = this.add.image(190, 490, "BotonReintentar");
     btnReintentar.setVisible(false);
     btnReintentar.setDepth(10);
@@ -185,7 +185,8 @@ class Scene5 extends Phaser.Scene {
         !TerminoElJuego(
           gameGlobalOptions.tiempoTotal,
           this.tiempoCanncion,
-          this.flechaMPCJ0
+          this.flechaMPCJ0,
+          this.modo
         )
       ) {
         //PowerUps
@@ -285,13 +286,9 @@ class Scene5 extends Phaser.Scene {
             NumeroRandom(0.5, 0.2)
           );
         }
-        if (DesactivarReloj(gameGlobalOptions.tiempoTotal, j)) {
-          j = ActivarReloj(gameGlobalOptions.tiempoTotal, 3);
-        }
       }
     }
   }
 }
 //variabnles a borrar
 var t;
-var j = 3;
