@@ -19,6 +19,8 @@ var btnReintentar;
 var btnMenuPrincipal;
 var btnPausa;
 
+var vida;
+
 class Scene5 extends Phaser.Scene {
   constructor() {
     super("juegonivel3");
@@ -114,12 +116,12 @@ class Scene5 extends Phaser.Scene {
     btnContinuar.setVisible(false);
     btnContinuar.setDepth(10);
     btnContinuar.setInteractive();
-    btnContinuar.on("pointerdown", () => this.scene.start("juegonivel3"));
+    btnContinuar.on("pointerdown", () => this.scene.start("creditos"));
     btnReintentar = this.add.image(190, 490, "BotonReintentar");
     btnReintentar.setVisible(false);
     btnReintentar.setDepth(10);
     btnReintentar.setInteractive();
-    btnReintentar.on("pointerdown", () => this.scene.start("juegonivel1"));
+    btnReintentar.on("pointerdown", () => this.scene.start("juegonivel3"));
 
     btnMenuPrincipal = this.add.image(400, 480, "VolverInicio");
     btnMenuPrincipal.setVisible(false);
@@ -131,6 +133,24 @@ class Scene5 extends Phaser.Scene {
     btnPausa.setVisible(false);
     btnPausa.setDepth(10);
     btnPausa.setInteractive();
+
+    vida = [];
+    vida[0] = this.add.image(400, 50, "Vida");
+    vida[1] = this.add.image(400, 100, "Vida");
+    vida[2] = this.add.image(400, 150, "Vida");
+
+    for (let index = 2; index > vidasJ0 - 1; index--) {
+      vida[index].setVisible(false);
+    }
+
+    vidaPerdida = [];
+    vidaPerdida[0] = this.add.image(400, 50, "VidaPerdida");
+    vidaPerdida[1] = this.add.image(400, 100, "VidaPerdida");
+    vidaPerdida[2] = this.add.image(400, 150, "VidaPerdida");
+
+    for (let index = 0; index < vidasJ0; index++) {
+      vidaPerdida[index].setVisible(false);
+    }
 
     pausa = false;
     finDelJuego = false;

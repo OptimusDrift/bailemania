@@ -144,13 +144,17 @@ class Scene2 extends Phaser.Scene {
     vida[1] = this.add.image(400, 100, "Vida");
     vida[2] = this.add.image(400, 150, "Vida");
 
+    for (let index = 2; index > vidasJ0 - 1; index--) {
+      vida[index].setVisible(false);
+    }
+
     vidaPerdida = [];
     vidaPerdida[0] = this.add.image(400, 50, "VidaPerdida");
     vidaPerdida[1] = this.add.image(400, 100, "VidaPerdida");
     vidaPerdida[2] = this.add.image(400, 150, "VidaPerdida");
 
     for (let index = 0; index < vidasJ0; index++) {
-      vida[index].setVisible(false);
+      vidaPerdida[index].setVisible(false);
     }
 
     pausa = false;
