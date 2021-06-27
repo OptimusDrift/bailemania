@@ -90,12 +90,14 @@ function ReiniciarFalladasJ1() {
 }
 
 function PausarJuego(flechas) {
+  btnPausa.setVisible(true);
   PausarOReanudarFlechas(flechas);
   //PausarMusica();
   //Mostrar Menu
 }
 
 function ReanudarJuego(flechas) {
+  btnPausa.setVisible(false);
   PausarOReanudarFlechas(flechas, 200);
   //ReanudarMusica();
   //Ocultar Menu

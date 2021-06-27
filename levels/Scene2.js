@@ -17,6 +17,7 @@ var resultado;
 var btnContinuar;
 var btnReintentar;
 var btnMenuPrincipal;
+var btnPausa;
 
 class Scene2 extends Phaser.Scene {
   constructor() {
@@ -126,6 +127,11 @@ class Scene2 extends Phaser.Scene {
     btnMenuPrincipal.setInteractive();
     btnMenuPrincipal.on("pointerdown", () => this.scene.start("inicio"));
 
+    btnPausa = this.add.image(400, 300, "EscenaPausa");
+    btnPausa.setVisible(false);
+    btnPausa.setDepth(10);
+    btnPausa.setInteractive();
+
     pausa = false;
     finDelJuego = false;
     t = 0;
@@ -139,7 +145,7 @@ class Scene2 extends Phaser.Scene {
     ReiniciarEstadisticas();
   }
   update(time, delta) {
-    if (Phaser.Input.Keyboard.JustDown(this.keyP)) {
+    if (Phaser.Input.Keyboard.JustDown(this.keyP) && !finDelJuego) {
       pausa = !pausa;
       if (pausa) {
         PausarJuego(this.flechaMPCJ0);
