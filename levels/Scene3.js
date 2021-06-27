@@ -11,6 +11,8 @@ var collidersPerdidoJ1;
 var collidersCasiPerfectoJ1;
 //Pausa del juego
 var pausa;
+//Musica
+var Musica2Jugadores;
 class Scene3 extends Phaser.Scene {
   constructor() {
     super("Juegonivel2");
@@ -103,6 +105,10 @@ class Scene3 extends Phaser.Scene {
 
     //Pausa
     this.add.image(400, 300, "EscenaPausa");
+
+    //Musica
+    Musica2Jugadores = this.sound.add("MusicaDosJugadores");
+    Musica2Jugadores.play();
 
     //Jugadores
     this.add.image(400, 300, "JcJ");

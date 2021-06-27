@@ -39,13 +39,28 @@ class Scene1 extends Phaser.Scene {
     this.load.image("flechaGiratoria", "./assets/flechaGiratoria.png");
     //Colliders
     this.load.image("perfecto", "./assets/perfecto.png");
+
+    //Musica
+    this.load.audio("MusicaPrincipal", "./sound/MusicaMenuPrincipal.mp3");
+    this.load.audio("MusicaCreditos", "./sound/MusicaCreditos.mp3");
+    this.load.audio("MusicaUnJugador", "./sound/MusicaUnJugador.mp3");
+    this.load.audio("MusicaDosJugadores", "./sound/MusicaDosJugadores.mp3");
+    
   }
   create() {
     this.add.image(400, 300, "Portada");
 
     var UnJugador = this.add.image(400, 330, "UnJugador");
     UnJugador.setInteractive();
-    UnJugador.on("pointerdown", () => this.scene.start("juegonivel1"));
+    UnJugador.on("pointerdown", function (pointer)
+    {
+      if(pointer.leftButtonReleased)
+      {
+        MusicaInicio.stop();
+        this.scene.start("juegonivel1");
+      }
+    }, this);
+    
     /*this.add.text(310, 315, "Un Jugador", 
     { 
       color: "#61b4cf", 
@@ -66,13 +81,31 @@ class Scene1 extends Phaser.Scene {
       }
     }*/
 
+    var MusicaInicio = this.sound.add("MusicaPrincipal");
+    MusicaInicio.play();
+
     var DosJugadores = this.add.image(400, 400, "DosJugadores");
     DosJugadores.setInteractive();
-    DosJugadores.on("pointerdown", () => this.scene.start("Juegonivel2"));
+    DosJugadores.on("pointerdown", function (pointer)
+    {
+      if(pointer.leftButtonReleased)
+      {
+        MusicaInicio.stop();
+        this.scene.start("Juegonivel2");
+      }
+    }, this);
 
     var StrikerGames = this.add.image(95, 580, "StrikerGames");
     StrikerGames.setInteractive();
-    StrikerGames.on("pointerdown", () => this.scene.start("Creditos"));
+    //StrikerGames.on("pointerdown", () => this.scene.start("Creditos")); 
+    StrikerGames.on("pointerdown", function (pointer)
+    {
+      if(pointer.leftButtonReleased)
+      {
+        MusicaInicio.stop();
+        this.scene.start("creditos");
+      }
+    }, this);
 
     ReiniciarVidas();
   }

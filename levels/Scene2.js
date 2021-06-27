@@ -20,7 +20,8 @@ var btnMenuPrincipal;
 var btnPausa;
 var vida;
 var vidaPerdida;
-
+//Musica
+//var Musica1;
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("juegonivel1");
@@ -107,6 +108,10 @@ class Scene2 extends Phaser.Scene {
 
     //Tiempo de la cancion
     this.tiempoCanncion = 3;
+
+    //Musica
+    //Musica1 = this.sound.add("MusicaUnJugador");
+    //Musica1.play();
 
     //Menu de nivel superado o no superado
     resultado = this.add.image(400, 300, "Resultados");
