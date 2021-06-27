@@ -126,7 +126,21 @@ function TerminoElJuego(tiempoTotal, tiempoFinal, flechas, modo) {
       }
       resultado.setVisible(true);
     } else {
+      finDelJuego = true;
       resultado.setVisible(true);
+      var j0 = flechasAcertadasPerfectoJ0 + flechasAcertadasCasiPerfectoJ0 / 2;
+      var jj1 = flechasAcertadasPerfectoJ1 + flechasAcertadasCasiPerfectoJ1 / 2;
+      if (j0 == jj1) {
+        txtGanador.setText("¡Empate!");
+      } else if (j0 > jj1) {
+        txtGanador.setText("Jugador 1");
+        txtPuntaje.setText(puntosJ0);
+      } else {
+        txtGanador.setText("Jugador 2");
+        txtPuntaje.setText(puntosJ1);
+      }
+      txtPuntaje.setVisible(true);
+      txtGanador.setVisible(true);
       btnMenuPrincipal.setVisible(true);
     }
     PausarOReanudarFlechas(flechas);
@@ -223,6 +237,7 @@ function FinDelJuego() {
     j2.anims.play("enemigo2Derrota");
   }
   j1.anims.play("victoryJ1");
+  gameGlobalOptions.puntajeTotal += puntosJ0;
   return true;
 }
 

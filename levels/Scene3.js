@@ -19,6 +19,22 @@ var btnMenuPrincipal;
 var j1;
 var j2;
 var iAActiva = 1;
+
+//Txt's
+var txtPerfectas;
+var txtBuenas;
+var txtErradas;
+var txtNota;
+var txtPuntaje;
+var txtGanador;
+
+var btnPausa;
+var txtTiempo;
+//FX
+var hieloPW;
+var fuegoPW;
+var bombaPW;
+
 class Scene3 extends Phaser.Scene {
   constructor() {
     super("Juegonivel2");
@@ -42,7 +58,7 @@ class Scene3 extends Phaser.Scene {
     //Flechas que estan activas en el mapa Jugador 1
     this.flechaMPCJ1 = this.add.group();
 
-    this.tiempoCancion = 3;
+    this.tiempoCancion = 237;
 
     //Colisiiones J0
     collidersPerfectoJ0 = this.physics.add.staticGroup();
@@ -72,9 +88,19 @@ class Scene3 extends Phaser.Scene {
     var FlechaDer2 = this.add.image(725, 470, "flechaJugador2");
     FlechaDer2.setRotation(3);
 
+    //FX
+    hieloPW = this.sound.add("Hielo");
+    fuegoPW = this.sound.add("Fuego");
+    bombaPW = this.sound.add("Explosion");
+
     collidersPerdidoJ0 = this.physics.add.staticGroup();
     collidersPerdidoJ0.create(200, 590, "perfecto");
     collidersPerdidoJ0.setVisible(false);
+
+    btnPausa = this.add.image(400, 300, "EscenaPausa");
+    btnPausa.setVisible(false);
+    btnPausa.setDepth(10);
+    btnPausa.setInteractive();
 
     //Colisiiones J1
     collidersPerfectoJ1 = this.physics.add.staticGroup();
@@ -158,11 +184,57 @@ class Scene3 extends Phaser.Scene {
       Phaser.Input.Keyboard.KeyCodes.RIGHT
     );
 
+    puntosJ0 = 0;
+    puntosJ1 = 0;
+
     //Sprites jugadores
     j1 = this.physics.add.sprite(200, 300, "j1Idle").setScale(2);
     j1.anims.play("idleJ1");
     j2 = this.physics.add.sprite(600, 300, "j2Idle").setScale(2);
     j2.anims.play("idleJ2");
+    //Fondo
+    var fondo = this.physics.add.staticGroup();
+    fondo.create(400, 300, "lv2");
+    fondo.setDepth(-2);
+    //txt's
+    txtPerfectas = this.add.text(450, 215, "", {
+      fontSize: 32,
+    });
+
+    txtPerfectas.setDepth(11);
+
+    txtBuenas = this.add.text(450, 270, "", {
+      fontSize: 32,
+    });
+    txtBuenas.setDepth(11);
+
+    txtErradas = this.add.text(450, 325, "", {
+      fontSize: 32,
+    });
+    txtErradas.setDepth(11);
+
+    txtNota = this.add.text(450, 370, "", {
+      fontSize: 64,
+    });
+    txtNota.setDepth(11);
+
+    txtPuntaje = this.add.text(450, 355, "0", {
+      fontSize: 64,
+    });
+    txtPuntaje.setDepth(11);
+    txtPuntaje.setVisible(false);
+    txtGanador = this.add.text(450, 255, "0", {
+      fontSize: 64,
+    });
+    ReiniciarEstadisticas();
+    finDelJuego = false;
+    txtGanador.setDepth(11);
+    txtGanador.setVisible(false);
+
+    txtTiempo = this.add.text(350, 520, this.tiempoCancion, {
+      fontSize: 64,
+    });
+    txtTiempo.setDepth(11);
   }
   update(time, delta) {
     if (Phaser.Input.Keyboard.JustDown(this.keyP) && !finDelJuego) {
@@ -175,6 +247,9 @@ class Scene3 extends Phaser.Scene {
     }
     if (!pausa && !finDelJuego) {
       //Reloj del juego
+      txtTiempo.setText(
+        parseInt(this.tiempoCancion - gameGlobalOptions.tiempoTotal)
+      );
       gameGlobalOptions.tiempoTotal += Reloj(delta);
       if (
         !TerminoElJuego(
@@ -201,6 +276,7 @@ class Scene3 extends Phaser.Scene {
               gameGlobalOptions.tiempoTotal,
               PowerUpCongelarJ0(this.flechaMPCJ0)
             );
+            hieloPW.play();
           }
         }
         if (this.powerUpActivoJ1 == "flechaHielo") {
@@ -209,6 +285,7 @@ class Scene3 extends Phaser.Scene {
               gameGlobalOptions.tiempoTotal,
               PowerUpCongelarJ1(this.flechaMPCJ1)
             );
+            hieloPW.play();
           }
         }
         if (this.powerUpActivoJ0 == "flechaFuego") {
@@ -217,6 +294,7 @@ class Scene3 extends Phaser.Scene {
               gameGlobalOptions.tiempoTotal,
               PowerUpFuegoJ0(this.flechaMPCJ0)
             );
+            fuegoPW.play();
           }
         }
         if (this.powerUpActivoJ1 == "flechaFuego") {
@@ -225,6 +303,7 @@ class Scene3 extends Phaser.Scene {
               gameGlobalOptions.tiempoTotal,
               PowerUpFuegoJ1(this.flechaMPCJ1)
             );
+            fuegoPW.play();
           }
         }
         if (this.powerUpActivoJ0 == "flechaGiratoria") {

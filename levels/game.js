@@ -19,4 +19,5 @@ var game = new Phaser.Game(config);
 let gameGlobalOptions = {
   tiempoTotal: 0,
   vidas: 0,
+  puntajeTotal: 0,
 };

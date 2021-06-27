@@ -22,12 +22,12 @@ function PowerUpDescongelarJ1(params) {
 }
 
 function PowerUpBombaJ0(params) {
-  //Ejecutar sonido
+  bombaPW.play();
   LimpiarFlechasEnPantalla(params, 0);
 }
 
 function PowerUpBombaJ1(params) {
-  //Ejecutar sonido
+  bombaPW.play();
   LimpiarFlechasEnPantalla(params, 1);
 }
 

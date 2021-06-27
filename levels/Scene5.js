@@ -34,6 +34,13 @@ var txtBuenas;
 var txtErradas;
 var txtNota;
 var txtPuntaje;
+var txtTiempo;
+
+//FX
+var hieloPW;
+var fuegoPW;
+var bombaPW;
+var spinPW;
 
 class Scene5 extends Phaser.Scene {
   constructor() {
@@ -93,6 +100,12 @@ class Scene5 extends Phaser.Scene {
     var FlechaDer2 = this.add.image(725, 470, "flechaJugador2");
     FlechaDer2.setRotation(3);
 
+    //FX
+    hieloPW = this.sound.add("Hielo");
+    fuegoPW = this.sound.add("Fuego");
+    bombaPW = this.sound.add("Explosion");
+    spinPW = this.sound.add("Spin");
+
     collidersPerdidoJ0 = this.physics.add.staticGroup();
     collidersPerdidoJ0.create(200, 590, "perfecto");
     collidersPerdidoJ0.setVisible(false);
@@ -127,7 +140,7 @@ class Scene5 extends Phaser.Scene {
     this.spawnJ1 = true;
 
     //Tiempo de la cancion
-    this.tiempoCanncion = 3;
+    this.tiempoCancion = 236;
 
     //Menu de nivel superado o no superado
     resultado = this.add.image(400, 300, "Resultados");
@@ -217,6 +230,10 @@ class Scene5 extends Phaser.Scene {
       fontSize: 32,
     });
     txtPuntaje.setDepth(11);
+    txtTiempo = this.add.text(350, 520, this.tiempoCancion, {
+      fontSize: 64,
+    });
+    txtTiempo.setDepth(11);
   }
   update(time, delta) {
     TemblorCamara();
@@ -230,11 +247,14 @@ class Scene5 extends Phaser.Scene {
     }
     if (!pausa && !finDelJuego) {
       //Reloj del juego
+      txtTiempo.setText(
+        parseInt(this.tiempoCancion - gameGlobalOptions.tiempoTotal)
+      );
       gameGlobalOptions.tiempoTotal += Reloj(delta);
       if (
         !TerminoElJuego(
           gameGlobalOptions.tiempoTotal,
-          this.tiempoCanncion,
+          this.tiempoCancion,
           this.flechaMPCJ0,
           this.modo,
           this.flechasGrupoJ0
@@ -257,6 +277,7 @@ class Scene5 extends Phaser.Scene {
               gameGlobalOptions.tiempoTotal,
               PowerUpCongelarJ0(this.flechaMPCJ0)
             );
+            hieloPW.play();
           }
         }
         if (this.powerUpActivoJ1 == "flechaHielo") {
@@ -265,6 +286,7 @@ class Scene5 extends Phaser.Scene {
               gameGlobalOptions.tiempoTotal,
               PowerUpCongelarJ1(this.flechaMPCJ1)
             );
+            hieloPW.play();
           }
         }
         if (this.powerUpActivoJ0 == "flechaFuego") {
@@ -273,6 +295,7 @@ class Scene5 extends Phaser.Scene {
               gameGlobalOptions.tiempoTotal,
               PowerUpFuegoJ0(this.flechaMPCJ0)
             );
+            fuegoPW.play();
           }
         }
         if (this.powerUpActivoJ1 == "flechaFuego") {
@@ -281,6 +304,7 @@ class Scene5 extends Phaser.Scene {
               gameGlobalOptions.tiempoTotal,
               PowerUpFuegoJ1(this.flechaMPCJ1)
             );
+            fuegoPW.play();
           }
         }
         if (this.powerUpActivoJ0 == "flechaGiratoria") {
@@ -289,6 +313,7 @@ class Scene5 extends Phaser.Scene {
               gameGlobalOptions.tiempoTotal,
               PowerUpFuegoJ1(this.flechaMPCJ0)
             );
+            spinPW.play();
           }
         }
         //ReiniciarPowerUps

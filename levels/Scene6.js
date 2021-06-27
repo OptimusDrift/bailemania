@@ -1,5 +1,6 @@
 var resultado;
 var btnMenuPrincipal;
+var txtResultadoTotal;
 class Scene6 extends Phaser.Scene {
   constructor() {
     super("resultados");
@@ -14,6 +15,15 @@ class Scene6 extends Phaser.Scene {
     btnMenuPrincipal.setDepth(10);
     btnMenuPrincipal.setInteractive();
     btnMenuPrincipal.on("pointerdown", () => this.scene.start("inicio"));
+    txtResultadoTotal = this.add.text(
+      450,
+      300,
+      gameGlobalOptions.puntajeTotal,
+      {
+        fontSize: 64,
+      }
+    );
+    txtResultadoTotal.setDepth(11);
   }
   update(time, delta) {}
 }
