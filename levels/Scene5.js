@@ -250,7 +250,6 @@ class Scene5 extends Phaser.Scene {
         }
         if (DesactivarReloj(gameGlobalOptions.tiempoTotal, j)) {
           j = ActivarReloj(gameGlobalOptions.tiempoTotal, 3);
-        } else {
         }
       }
     }

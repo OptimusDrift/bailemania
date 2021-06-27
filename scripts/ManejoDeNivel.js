@@ -13,7 +13,7 @@ flechasFalladasJ1 = 0;
 //Flechas totales
 fechasJ0 = 0;
 fechasJ1 = 0;
-
+//Vidas
 vidasJ0 = 3;
 vidasJ1 = 3;
 function AgregarPuntosCasiPerfecto() {
@@ -112,8 +112,13 @@ function TerminoElJuego(tiempoTotal, tiempoFinal, flechas) {
       btnContinuar.setVisible(true);
       btnReintentar.setVisible(true);
     } else {
-      btnReintentar.setPosition(400, 490);
-      btnReintentar.setVisible(true);
+      vidasJ0--;
+      if (vidasJ0 < 0) {
+        //btnMenuPrincipal;
+      } else {
+        btnReintentar.setPosition(400, 490);
+        btnReintentar.setVisible(true);
+      }
     }
     resultado.setVisible(true);
     PausarOReanudarFlechas(flechas);
@@ -191,10 +196,6 @@ function FinDelJuego() {
     notaJ1 = 5;
   }
   MostrarNotas(notaJ0, notaJ1);
-  console.log(fechasJ0);
-  console.log(fechasJ1);
-  console.log(j0);
-  console.log(j1);
   if (notaJ0 >= notaJ1) {
     return false;
   }
@@ -212,4 +213,8 @@ function ReiniciarEstadisticas() {
   ReiniciarAcertadasCasiPerfectoJ1();
   ReiniciarFalladasJ0();
   ReiniciarFalladasJ1();
+}
+
+function ReiniciarVidas() {
+  vidasJ0 = 3;
 }
