@@ -18,9 +18,11 @@ vidasJ0 = 3;
 vidasJ1 = 3;
 function AgregarPuntosCasiPerfecto() {
   puntosJ0 += 50;
+  txtPuntaje.setText(puntosJ0);
 }
 function AgregarPuntosPerfecto() {
   puntosJ0 += 100;
+  txtPuntaje.setText(puntosJ0);
 }
 function ReiniciarPuntos() {
   puntosJ0 = 0;
@@ -153,8 +155,13 @@ function ObtenerNota(nota) {
 }
 
 function MostrarNotas(notaJ0, notaJ1) {
-  var j0 = ObtenerNota(notaJ0);
   var j1 = ObtenerNota(notaJ1);
+
+  //Txt's
+  txtPerfectas.setText(flechasAcertadasPerfectoJ0);
+  txtBuenas.setText(flechasAcertadasCasiPerfectoJ0);
+  txtErradas.setText(flechasFalladasJ0);
+  txtNota.setText(ObtenerNota(notaJ0));
 }
 
 /*notas

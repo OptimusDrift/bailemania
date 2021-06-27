@@ -26,6 +26,15 @@ var j1;
 var j2;
 var iAActiva = "IA2";
 
+var camera;
+
+//Txt's
+var txtPerfectas;
+var txtBuenas;
+var txtErradas;
+var txtNota;
+var txtPuntaje;
+
 class Scene5 extends Phaser.Scene {
   constructor() {
     super("juegonivel3");
@@ -33,9 +42,11 @@ class Scene5 extends Phaser.Scene {
 
   preload() {}
   create() {
+    camera = this.cameras.main;
     iAActiva = "IA2";
     //Inicialización del Reloj
     gameGlobalOptions.tiempoTotal = 0;
+    timpoTemblor = 0;
     this.modo = 1;
 
     //Arreglos de flechas a agregar en el mapa Jugador 0
@@ -149,18 +160,18 @@ class Scene5 extends Phaser.Scene {
     ReproducirMusica(musica);
     //Vidas
     vida = [];
-    vida[0] = this.add.image(400, 50, "Vida");
-    vida[1] = this.add.image(400, 100, "Vida");
-    vida[2] = this.add.image(400, 150, "Vida");
+    vida[0] = this.add.image(400, 75, "Vida");
+    vida[1] = this.add.image(400, 125, "Vida");
+    vida[2] = this.add.image(400, 175, "Vida");
 
     for (let index = 2; index > vidasJ0 - 1; index--) {
       vida[index].setVisible(false);
     }
 
     vidaPerdida = [];
-    vidaPerdida[0] = this.add.image(400, 50, "VidaPerdida");
-    vidaPerdida[1] = this.add.image(400, 100, "VidaPerdida");
-    vidaPerdida[2] = this.add.image(400, 150, "VidaPerdida");
+    vidaPerdida[0] = this.add.image(400, 75, "VidaPerdida");
+    vidaPerdida[1] = this.add.image(400, 125, "VidaPerdida");
+    vidaPerdida[2] = this.add.image(400, 175, "VidaPerdida");
 
     for (let index = 0; index < vidasJ0; index++) {
       vidaPerdida[index].setVisible(false);
@@ -181,8 +192,34 @@ class Scene5 extends Phaser.Scene {
     j1.anims.play("idleJ1");
     j2 = this.physics.add.sprite(600, 300, "enemigo2Idle").setScale(2);
     j2.anims.play("enemigo2Idle");
+
+    //txt's
+    txtPerfectas = this.add.text(450, 215, "", {
+      fontSize: 32,
+    });
+    txtPerfectas.setDepth(11);
+
+    txtBuenas = this.add.text(450, 270, "", {
+      fontSize: 32,
+    });
+    txtBuenas.setDepth(11);
+
+    txtErradas = this.add.text(450, 325, "", {
+      fontSize: 32,
+    });
+    txtErradas.setDepth(11);
+
+    txtNota = this.add.text(450, 370, "", {
+      fontSize: 64,
+    });
+    txtNota.setDepth(11);
+    txtPuntaje = this.add.text(390, 10, "0", {
+      fontSize: 32,
+    });
+    txtPuntaje.setDepth(11);
   }
   update(time, delta) {
+    TemblorCamara();
     if (Phaser.Input.Keyboard.JustDown(this.keyP) && !finDelJuego) {
       pausa = !pausa;
       if (pausa) {

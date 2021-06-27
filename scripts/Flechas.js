@@ -78,6 +78,9 @@ function CasiPerfectoJ0(flecha) {
     if (TeclaPrecionadaIgualAFlecha(flecha, tecla)) {
       AgregarPuntosCasiPerfecto();
       AgregarAcertadasCasiPerfectoJ0();
+    } else {
+      timpoTemblor = ActivarReloj(gameGlobalOptions.tiempoTotal, 0.1);
+      AgregarFalladasJ0();
     }
   }
 }
@@ -93,11 +96,16 @@ function PerfectoJ0(flecha) {
       AgregarAcertadasPerfectoJ0();
       flecha.scene.powerUpActivoJ1 = flecha.texture.key;
       flecha.scene.jugador1 = true;
+    } else {
+      timpoTemblor = ActivarReloj(gameGlobalOptions.tiempoTotal, 0.1);
+      AgregarFalladasJ0();
     }
   }
 }
 function PerdidoJ0(params) {
   EliminarFlecha(params, 0);
+  timpoTemblor = ActivarReloj(gameGlobalOptions.tiempoTotal, 0.1);
+  console.log(timpoTemblor);
   AgregarFalladasJ0();
   AgregarFlechasJ0();
 }

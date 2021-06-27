@@ -18,6 +18,7 @@ var resultado;
 var btnMenuPrincipal;
 var j1;
 var j2;
+var iAActiva = 1;
 class Scene3 extends Phaser.Scene {
   constructor() {
     super("Juegonivel2");
@@ -25,6 +26,7 @@ class Scene3 extends Phaser.Scene {
 
   preload() {}
   create() {
+    iAActiva = 1;
     //Inicialización del Reloj
     gameGlobalOptions.tiempoTotal = 0;
     this.modo = 2;
@@ -53,7 +55,7 @@ class Scene3 extends Phaser.Scene {
     collidersCasiPerfectoJ0.setVisible(false);
 
     //Contorno Flechas Jugador1
-    this.add.image(70, 470, "flechaJugador1");
+    var FlechaAba1 = this.add.image(70, 470, "flechaJugador1");
     var FlechaAba1 = this.add.image(155, 470, "flechaJugador1");
     FlechaAba1.setRotation(4.5);
     var FlechaArr1 = this.add.image(240, 470, "flechaJugador1");
@@ -160,7 +162,7 @@ class Scene3 extends Phaser.Scene {
     j1 = this.physics.add.sprite(200, 300, "j1Idle").setScale(2);
     j1.anims.play("idleJ1");
     j2 = this.physics.add.sprite(600, 300, "j2Idle").setScale(2);
-    j2.anims.play("j2Idle");
+    j2.anims.play("idleJ2");
   }
   update(time, delta) {
     if (Phaser.Input.Keyboard.JustDown(this.keyP) && !finDelJuego) {
@@ -269,7 +271,7 @@ class Scene3 extends Phaser.Scene {
             SpawnFlechas(this.flechaMPCJ0, this.physics, 0);
           }
           if (this.spawnJ1) {
-            SpawnFlechas(this.flechaMPCJ1, this.physics, 1);
+            SpawnFlechas(this.flechaMPCJ1, this.physics, iAActiva);
           }
           t = ActivarReloj(
             gameGlobalOptions.tiempoTotal,
