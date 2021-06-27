@@ -6,7 +6,7 @@ class Scene1 extends Phaser.Scene {
   preload() {
     //menus
     this.load.image("Portada", "./assets/MenuInicio.png");
-    this.load.image("UnJugador", "../assets/UnJugadorcito.png");
+    this.load.image("unJugador", "./assets/UnJugadorcito.png");
     this.load.image("DosJugadores", "./assets/DosJugadores.png");
     this.load.image("StrikerGames", "./assets/StrikerGames.png");
 
@@ -207,7 +207,7 @@ class Scene1 extends Phaser.Scene {
   create() {
     this.add.image(400, 300, "Portada");
 
-    var UnJugador = this.add.image(400, 330, "UnJugador");
+    var UnJugador = this.add.image(400, 330, "unJugador");
     UnJugador.setInteractive();
     UnJugador.on(
       "pointerdown",
