@@ -16,6 +16,8 @@ var finDelJuego;
 var resultado;
 var btnContinuar;
 var btnReintentar;
+var btnMenuPrincipal;
+var btnPausa;
 
 class Scene5 extends Phaser.Scene {
   constructor() {
@@ -26,7 +28,6 @@ class Scene5 extends Phaser.Scene {
   create() {
     //Inicialización del Reloj
     gameGlobalOptions.tiempoTotal = 0;
-
     this.modo = 1;
 
     //Arreglos de flechas a agregar en el mapa Jugador 0
@@ -113,12 +114,23 @@ class Scene5 extends Phaser.Scene {
     btnContinuar.setVisible(false);
     btnContinuar.setDepth(10);
     btnContinuar.setInteractive();
-    btnContinuar.on("pointerdown", () => this.scene.start("creditos"));
+    btnContinuar.on("pointerdown", () => this.scene.start("juegonivel3"));
     btnReintentar = this.add.image(190, 490, "BotonReintentar");
     btnReintentar.setVisible(false);
     btnReintentar.setDepth(10);
     btnReintentar.setInteractive();
-    btnReintentar.on("pointerdown", () => this.scene.start("juegonivel3"));
+    btnReintentar.on("pointerdown", () => this.scene.start("juegonivel1"));
+
+    btnMenuPrincipal = this.add.image(400, 480, "VolverInicio");
+    btnMenuPrincipal.setVisible(false);
+    btnMenuPrincipal.setDepth(10);
+    btnMenuPrincipal.setInteractive();
+    btnMenuPrincipal.on("pointerdown", () => this.scene.start("inicio"));
+
+    btnPausa = this.add.image(400, 300, "EscenaPausa");
+    btnPausa.setVisible(false);
+    btnPausa.setDepth(10);
+    btnPausa.setInteractive();
 
     pausa = false;
     finDelJuego = false;
@@ -133,7 +145,7 @@ class Scene5 extends Phaser.Scene {
     ReiniciarEstadisticas();
   }
   update(time, delta) {
-    if (Phaser.Input.Keyboard.JustDown(this.keyP)) {
+    if (Phaser.Input.Keyboard.JustDown(this.keyP) && !finDelJuego) {
       pausa = !pausa;
       if (pausa) {
         PausarJuego(this.flechaMPCJ0);

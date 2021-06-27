@@ -14,7 +14,7 @@ flechasFalladasJ1 = 0;
 fechasJ0 = 0;
 fechasJ1 = 0;
 //Vidas
-vidasJ0 = 1;
+vidasJ0 = 3;
 vidasJ1 = 3;
 function AgregarPuntosCasiPerfecto() {
   puntosJ0 += 50;
@@ -115,6 +115,8 @@ function TerminoElJuego(tiempoTotal, tiempoFinal, flechas) {
       btnReintentar.setVisible(true);
     } else {
       vidasJ0--;
+      //vida[vidasJ0].setVisible(false);
+      //vidaPerdida[vidasJ0].setVisible(true);
       if (vidasJ0 < 0) {
         btnMenuPrincipal.setVisible(true);
       } else {

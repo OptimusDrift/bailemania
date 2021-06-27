@@ -16,7 +16,7 @@ class Scene1 extends Phaser.Scene {
 
     //Vidas
     this.load.image("Vida", "./assets/Vida.png");
-    this.load.image("VidaPerdida", "./assets/VidaPerdida.png")
+    this.load.image("VidaPerdida", "./assets/VidaPerdida.png");
 
     //Pantalla Pausa
     this.load.image("EscenaPausa", "./assets/PantallaPausa.png");
