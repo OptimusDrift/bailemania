@@ -36,6 +36,10 @@ class Scene5 extends Phaser.Scene {
     //Arreglos de flechas a agregar en el mapa Jugador 0
     this.flechasGrupoJ0 = this.add.group();
 
+    //Fondo
+    var fondo = this.physics.add.staticGroup();
+    fondo.create(400, 300, "lv2");
+
     //Flechas que estan activas en el mapa Jugador 0
     this.flechaMPCJ0 = this.add.group();
 
@@ -186,7 +190,8 @@ class Scene5 extends Phaser.Scene {
           gameGlobalOptions.tiempoTotal,
           this.tiempoCanncion,
           this.flechaMPCJ0,
-          this.modo
+          this.modo,
+          this.flechasGrupoJ0
         )
       ) {
         //PowerUps

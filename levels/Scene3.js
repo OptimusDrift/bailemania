@@ -13,6 +13,9 @@ var collidersCasiPerfectoJ1;
 var pausa;
 //Musica
 var musica;
+//
+var resultado;
+var btnMenuPrincipal;
 class Scene3 extends Phaser.Scene {
   constructor() {
     super("Juegonivel2");
@@ -120,6 +123,15 @@ class Scene3 extends Phaser.Scene {
     this.keyJ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
 
     //Vidas
+    resultado = this.add.image(400, 300, "JcJ");
+    resultado.setDepth(9);
+    resultado.setVisible(false);
+
+    btnMenuPrincipal = this.add.image(400, 480, "VolverInicio");
+    btnMenuPrincipal.setDepth(10);
+    btnMenuPrincipal.setInteractive();
+    btnMenuPrincipal.on("pointerdown", () => this.scene.start("inicio"));
+    btnMenuPrincipal.setVisible(false);
     //this.add.image(400, 50, "Vida");
     //this.add.image(400, 100, "Vida");
     //this.add.image(400, 150, "VidaPerdida");

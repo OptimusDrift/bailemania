@@ -33,6 +33,10 @@ class Scene2 extends Phaser.Scene {
     gameGlobalOptions.tiempoTotal = 0;
     this.modo = 1;
 
+    //Fondo
+    var fondo = this.physics.add.staticGroup();
+    fondo.create(400, 200, "lv1");
+
     //Arreglos de flechas a agregar en el mapa Jugador 0
     this.flechasGrupoJ0 = this.add.group();
 

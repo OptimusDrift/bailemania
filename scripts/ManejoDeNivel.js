@@ -83,7 +83,6 @@ function ReiniciarFalladasJ0() {
 }
 function AgregarFalladasJ1() {
   flechasFalladasJ1 += 1;
-  console.log(flechasFalladasJ1);
 }
 function ReiniciarFalladasJ1() {
   flechasFalladasJ1 = 0;
@@ -124,6 +123,9 @@ function TerminoElJuego(tiempoTotal, tiempoFinal, flechas, modo) {
         }
       }
       resultado.setVisible(true);
+    } else {
+      resultado.setVisible(true);
+      btnMenuPrincipal.setVisible(true);
     }
     PausarOReanudarFlechas(flechas);
     PararMusica(musica);
