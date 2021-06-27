@@ -25,10 +25,134 @@ class Scene1 extends Phaser.Scene {
       frameWidth: 55,
       frameHeight: 128,
     });
-    //93 110
-    this.load.spritesheet("j1Abajo", "assets/J1Abajo.png", {
+
+    this.load.spritesheet("j1Down", "assets/J1Down.png", {
+      frameWidth: 88,
+      frameHeight: 89,
+    });
+
+    this.load.spritesheet("j1Right", "assets/J1Derecha.png", {
+      frameWidth: 58,
+      frameHeight: 102,
+    });
+
+    this.load.spritesheet("j1Left", "assets/J1Left.png", {
+      frameWidth: 58,
+      frameHeight: 102,
+    });
+
+    this.load.spritesheet("j1Victory", "assets/J1Victory.png", {
+      frameWidth: 84,
+      frameHeight: 123,
+    });
+
+    this.load.spritesheet("j1Derrota", "assets/J1Derrota.png", {
+      frameWidth: 63,
+      frameHeight: 101,
+    });
+    //Sprites jugador 2
+    this.load.spritesheet("j2Idle", "assets/J2Idle.png", {
+      frameWidth: 51,
+      frameHeight: 103,
+    });
+
+    this.load.spritesheet("j2Up", "assets/J2Up.png", {
+      frameWidth: 55,
+      frameHeight: 128,
+    });
+
+    this.load.spritesheet("j2Down", "assets/J2Down.png", {
+      frameWidth: 88,
+      frameHeight: 89,
+    });
+
+    this.load.spritesheet("j2Right", "assets/J2Derecha.png", {
+      frameWidth: 58,
+      frameHeight: 102,
+    });
+
+    this.load.spritesheet("j2Left", "assets/J2Left.png", {
+      frameWidth: 58,
+      frameHeight: 102,
+    });
+
+    this.load.spritesheet("j2Victory", "assets/J2Victory.png", {
+      frameWidth: 84,
+      frameHeight: 123,
+    });
+
+    this.load.spritesheet("j2Derrota", "assets/J2Derrota.png", {
+      frameWidth: 63,
+      frameHeight: 101,
+    });
+    //Enemigo 1
+    this.load.spritesheet("enemigo1Idle", "assets/Enemigo1Idle.png", {
+      frameWidth: 50,
+      frameHeight: 105,
+    });
+
+    this.load.spritesheet("enemigo1Up", "assets/Enemigo1Up.png", {
+      frameWidth: 63,
+      frameHeight: 123,
+    });
+    this.load.spritesheet("enemigo1Down", "assets/Enemigo1Down.png", {
+      frameWidth: 83,
+      frameHeight: 85,
+    });
+
+    this.load.spritesheet("enemigo1Derecha", "assets/Enemigo1Derecha.png", {
+      frameWidth: 69,
+      frameHeight: 106,
+    });
+
+    this.load.spritesheet("enemigo1Izquierda", "assets/Enemigo1Izquierda.png", {
       frameWidth: 60,
-      frameHeight: 110,
+      frameHeight: 106,
+    });
+
+    this.load.spritesheet("enemigo1Victory", "assets/Enemigo1Victory.png", {
+      frameWidth: 70,
+      frameHeight: 104,
+    });
+
+    this.load.spritesheet("enemigo1Derrota", "assets/Enemigo1Derrota.png", {
+      frameWidth: 62,
+      frameHeight: 103,
+    });
+
+    //Enemigo 2
+    this.load.spritesheet("enemigo2Idle", "assets/Enemigo2Idle.png", {
+      frameWidth: 53,
+      frameHeight: 104,
+    });
+
+    this.load.spritesheet("enemigo2Up", "assets/Enemigo2Up.png", {
+      frameWidth: 53,
+      frameHeight: 105,
+    });
+    this.load.spritesheet("enemigo2Down", "assets/Enemigo2Down.png", {
+      frameWidth: 87,
+      frameHeight: 87,
+    });
+
+    this.load.spritesheet("enemigo2Derecha", "assets/Enemigo2Derecha.png", {
+      frameWidth: 74,
+      frameHeight: 104,
+    });
+
+    this.load.spritesheet("enemigo2Izquierda", "assets/Enemigo2Izquierda.png", {
+      frameWidth: 51,
+      frameHeight: 103,
+    });
+
+    this.load.spritesheet("enemigo2Victory", "assets/Enemigo2Victory.png", {
+      frameWidth: 57,
+      frameHeight: 105,
+    });
+
+    this.load.spritesheet("enemigo2Derrota", "assets/Enemigo2Derrota.png", {
+      frameWidth: 58,
+      frameHeight: 104,
     });
 
     //Vidas
@@ -89,7 +213,7 @@ class Scene1 extends Phaser.Scene {
       },
       this
     );
-
+    //Sprites Jugador 1
     this.anims.create({
       key: "idleJ1",
       frames: this.anims.generateFrameNumbers("j1Idle", {
@@ -100,8 +224,8 @@ class Scene1 extends Phaser.Scene {
       repeat: -1,
     });
     this.anims.create({
-      key: "abajoJ1",
-      frames: this.anims.generateFrameNumbers("j1Abajo", {
+      key: "downJ1",
+      frames: this.anims.generateFrameNumbers("j1Down", {
         start: 0,
         end: 7,
       }),
@@ -118,12 +242,11 @@ class Scene1 extends Phaser.Scene {
       repeat: -1,
     });
 
-    /*
     this.anims.create({
       key: "rightJ1",
-      frames: this.anims.generateFrameNumbers("j1Rigth", {
+      frames: this.anims.generateFrameNumbers("j1Right", {
         start: 0,
-        end: 7,
+        end: 2,
       }),
       frameRate: 15,
       repeat: -1,
@@ -133,7 +256,7 @@ class Scene1 extends Phaser.Scene {
       key: "leftJ1",
       frames: this.anims.generateFrameNumbers("j1Left", {
         start: 0,
-        end: 7,
+        end: 3,
       }),
       frameRate: 15,
       repeat: -1,
@@ -148,17 +271,284 @@ class Scene1 extends Phaser.Scene {
       frameRate: 15,
       repeat: -1,
     });
-
     this.anims.create({
-      key: "lostJ1",
-      frames: this.anims.generateFrameNumbers("j1Lost", {
+      key: "derrotaJ1",
+      frames: this.anims.generateFrameNumbers("j1Derrota", {
         start: 0,
         end: 7,
       }),
       frameRate: 15,
       repeat: -1,
     });
-*/
+    //Sprites Enemigo 1
+    this.anims.create({
+      key: "enemigo1Idle",
+      frames: this.anims.generateFrameNumbers("enemigo1Idle", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "enemigo1Up",
+      frames: this.anims.generateFrameNumbers("enemigo1Up", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "enemigo1Down",
+      frames: this.anims.generateFrameNumbers("enemigo1Down", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "enemigo1Derecha",
+      frames: this.anims.generateFrameNumbers("enemigo1Derecha", {
+        start: 0,
+        end: 2,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "enemigo1Izquierda",
+      frames: this.anims.generateFrameNumbers("enemigo1Izquierda", {
+        start: 0,
+        end: 3,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "enemigo1Victory",
+      frames: this.anims.generateFrameNumbers("enemigo1Victory", {
+        start: 0,
+        end: 3,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "enemigo1Derrota",
+      frames: this.anims.generateFrameNumbers("enemigo1Derrota", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    //Sprites Jugador 2
+    this.anims.create({
+      key: "idleJ2",
+      frames: this.anims.generateFrameNumbers("j2Idle", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "downJ2",
+      frames: this.anims.generateFrameNumbers("j2Down", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "upJ2",
+      frames: this.anims.generateFrameNumbers("j2Up", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "rightJ2",
+      frames: this.anims.generateFrameNumbers("j2Right", {
+        start: 0,
+        end: 2,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "leftJ2",
+      frames: this.anims.generateFrameNumbers("j2Left", {
+        start: 0,
+        end: 3,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "victoryJ2",
+      frames: this.anims.generateFrameNumbers("j2Victory", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "derrotaJ2",
+      frames: this.anims.generateFrameNumbers("j2Derrota", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    //Sprites Enemigo 1
+    this.anims.create({
+      key: "enemigo1Idle",
+      frames: this.anims.generateFrameNumbers("enemigo1Idle", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "enemigo1Up",
+      frames: this.anims.generateFrameNumbers("enemigo1Up", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "enemigo1Down",
+      frames: this.anims.generateFrameNumbers("enemigo1Down", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "enemigo1Derecha",
+      frames: this.anims.generateFrameNumbers("enemigo1Derecha", {
+        start: 0,
+        end: 2,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "enemigo1Izquierda",
+      frames: this.anims.generateFrameNumbers("enemigo1Izquierda", {
+        start: 0,
+        end: 3,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "enemigo1Victory",
+      frames: this.anims.generateFrameNumbers("enemigo1Victory", {
+        start: 0,
+        end: 3,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "enemigo1Derrota",
+      frames: this.anims.generateFrameNumbers("enemigo1Derrota", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    //Sprites Enemigo 2
+    this.anims.create({
+      key: "enemigo2Idle",
+      frames: this.anims.generateFrameNumbers("enemigo2Idle", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "enemigo2Up",
+      frames: this.anims.generateFrameNumbers("enemigo2Up", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "enemigo2Down",
+      frames: this.anims.generateFrameNumbers("enemigo2Down", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "enemigo2Derecha",
+      frames: this.anims.generateFrameNumbers("enemigo2Derecha", {
+        start: 0,
+        end: 2,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "enemigo2Izquierda",
+      frames: this.anims.generateFrameNumbers("enemigo2Izquierda", {
+        start: 0,
+        end: 3,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "enemigo2Victory",
+      frames: this.anims.generateFrameNumbers("enemigo2Victory", {
+        start: 0,
+        end: 3,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "enemigo2Derrota",
+      frames: this.anims.generateFrameNumbers("enemigo2Derrota", {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+
     /*this.add.text(310, 315, "Un Jugador", 
     { 
       color: "#61b4cf", 
