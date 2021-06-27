@@ -6,7 +6,7 @@ class Scene1 extends Phaser.Scene {
   preload() {
     //menus
     this.load.image("Portada", "./assets/MenuInicio.png");
-    this.load.image("UnJugador", "./assets/Unjugador.png");
+    this.load.image("UnJugador", "assets/Unjugador.png");
     this.load.image("DosJugadores", "./assets/DosJugadores.png");
     this.load.image("StrikerGames", "./assets/StrikerGames.png");
 
