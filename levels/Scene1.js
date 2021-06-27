@@ -197,6 +197,12 @@ class Scene1 extends Phaser.Scene {
     this.load.audio("MusicaUnJugadorLv1", "./sound/MusicaUnJugadorLv1.mp3");
     this.load.audio("MusicaUnJugadorLv2", "./sound/MusicaUnJugadorLv2.mp3");
     this.load.audio("MusicaDosJugadores", "./sound/MusicaDosJugadores.mp3");
+
+    //Efectos Especiales
+    this.load.audio("Hielo", "./sound/EfectoHielo.mp3");
+    this.load.audio("Fuego", "./sound/EfectoFuego.mp3");
+    this.load.audio("Spin", "./sound/EfectoSpin.mp3");
+    this.load.audio("Explosion", "./sound/ExplosionEfecto.mp3");
   }
   create() {
     this.add.image(400, 300, "Portada");
