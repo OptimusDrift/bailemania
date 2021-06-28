@@ -1,7 +1,7 @@
 function Animaciones(flecha) {
   if (iAActiva == "IA") {
     if (flecha.name == "izquierda") {
-      j2.anims.play("enemigo1Idle");
+      j2.anims.play("enemigo1Izquierda");
     } else if (flecha.name == "derecha") {
       j2.anims.play("enemigo1Derecha");
     } else if (flecha.name == "abajo") {

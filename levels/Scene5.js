@@ -236,7 +236,6 @@ class Scene5 extends Phaser.Scene {
     txtTiempo.setDepth(11);
   }
   update(time, delta) {
-    TemblorCamara();
     if (Phaser.Input.Keyboard.JustDown(this.keyP) && !finDelJuego) {
       pausa = !pausa;
       if (pausa) {
@@ -246,6 +245,7 @@ class Scene5 extends Phaser.Scene {
       }
     }
     if (!pausa && !finDelJuego) {
+      TemblorCamara();
       //Reloj del juego
       txtTiempo.setText(
         parseInt(this.tiempoCancion - gameGlobalOptions.tiempoTotal)

@@ -110,6 +110,7 @@ function Porcentaje(a, b) {
 
 function TerminoElJuego(tiempoTotal, tiempoFinal, flechas, modo) {
   if (DesactivarReloj(tiempoTotal, tiempoFinal)) {
+    TerminarFlechas(flechas);
     if (modo == 1) {
       if (FinDelJuego()) {
         btnReintentar.setPosition(190, 490);

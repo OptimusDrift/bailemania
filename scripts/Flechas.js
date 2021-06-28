@@ -297,11 +297,19 @@ function LimpiarFlechasEnPantalla(params, jugador) {
   if (jugador == 0) {
     i = params.scene.flechasGrupoJ0.getChildren().length;
   } else {
-    i = i = params.scene.flechasGrupoJ1.getChildren().length;
+    i = params.scene.flechasGrupoJ1.getChildren().length;
   }
   for (let index = 0; index < i; index++) {
     EliminarFlecha(params, jugador);
     AgregarPuntosPerfecto();
+  }
+}
+function TerminarFlechas(params) {
+  for (let index = 0; index < params.scene.flechasGrupoJ0.getChildren().length; index++) {
+    EliminarFlecha(params, 0);
+  }
+  for (let index = 0; index < params.scene.flechasGrupoJ1.getChildren().length; index++) {
+    EliminarFlecha(params, 1);
   }
 }
 
